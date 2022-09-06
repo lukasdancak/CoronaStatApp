@@ -1,4 +1,4 @@
-package sk.tuke.gamestudio.server;
+package sk.tuke.coronastatapp.server;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

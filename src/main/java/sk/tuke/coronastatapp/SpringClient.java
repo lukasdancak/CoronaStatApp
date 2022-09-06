@@ -15,12 +15,12 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
-        pattern = "sk.tuke.gamestudio.server.*"))
+        pattern = "sk.tuke.coronastatapp.server.*"))
 public class SpringClient {
-    public static void main (String[] args){
+    public static void main(String[] args) {
 
 //       SpringApplication.run(SpringClient.class);
-         new SpringApplicationBuilder(SpringClient.class).web(WebApplicationType.NONE).run(args);
+        new SpringApplicationBuilder(SpringClient.class).web(WebApplicationType.NONE).run(args);
     }
 
 //    @Bean

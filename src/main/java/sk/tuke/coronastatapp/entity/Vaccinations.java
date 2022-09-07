@@ -1,6 +1,7 @@
 package sk.tuke.coronastatapp.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Vaccinations {
@@ -8,12 +9,14 @@ public class Vaccinations {
     @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "Vaccine.id")
-    int vaccineId;  // integer title: Interné id vakcíny z /api/vaccines
+    int vaccineId;
+    // integer title: Interné id vakcíny z /api/vaccines
 
     @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "Region.id")
-    int regionId;   // integer title: Interné id regiónu z regiónov z /api/ regions alebo null.
+    int regionId;
+    // integer title: Interné id regiónu z regiónov z /api/ regions alebo null.
     // Hodnota null znamená, že dáta  nie sú priradené žiadnemu kraju.
 
     @Id
@@ -21,24 +24,27 @@ public class Vaccinations {
     //@GeneratedValue // moze to byt Generated Value, ked je to string ?
     // preco je to String, ked v HospitalStaff je interne ID integer ?
     String id; // string title: Interné id záznamu
+
+    @Column(nullable = false)
     int dose1_count;    // integer title: Počet podaných prvých dávok vakcín pre daný deň, kraj a typ vakcíny
 
     @Column(nullable = false)
     int dose2Count;     // integer title: Počet podaných druhých dávok vakcín pre daný deň, kraj a typ vakcíny
 
     @Column(nullable = false)
-    String updatedAt;   //string($date-time) title: Čas poslednej aktualizácie záznamu(čas poslednej zmeny hodnoty
+    Date updatedAt;   //string($date-time) title: Čas poslednej aktualizácie záznamu(čas poslednej zmeny hodnoty
     // niektorého z atribútov záznamu) example:2020-01-13 12:34:56
 
     @Column(nullable = false)
-    String publishedOn; //string($date-time) title:Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík
+    Date publishedOn; //string($date-time) title:Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík
     // example:2020-01-13
 
 
     public Vaccinations() {
     }
 
-    public Vaccinations(int vaccineId, int regionId, int dose1_count, int dose2Count, String updatedAt, String publishedOn) {
+    public Vaccinations(int vaccineId, int regionId, int dose1_count, int dose2Count, Date updatedAt,
+                        Date publishedOn) {
         this.vaccineId = vaccineId;
         this.regionId = regionId;
         this.dose1_count = dose1_count;
@@ -79,19 +85,19 @@ public class Vaccinations {
         this.dose2Count = dose2Count;
     }
 
-    public String getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
+    public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public String getPublishedOn() {
+    public Date getPublishedOn() {
         return publishedOn;
     }
 
-    public void setPublishedOn(String publishedOn) {
+    public void setPublishedOn(Date publishedOn) {
         this.publishedOn = publishedOn;
     }
 

@@ -8,12 +8,15 @@ public class RegionVaccinations {
 
     @ManyToOne
     @JoinColumn(name = "Region.id")
-    int regionId;      //    title: Interné id regiónu z regiónov z /api/regions alebo null.
+    int regionId;
+    //    title: Interné id regiónu z regiónov z /api/regions alebo null.
     // Hodnota null znamená, že dáta nie sú priradené žiadnemu kraju.
+
     @Id
     @GeneratedValue // toto nie je iste
     @Column(nullable = false)
-    String id; //   Preco je to string ???  title: Interné id záznamu
+    String id; //   Preco je to string ???
+    // title: Interné id záznamu
 
     @Column(nullable = false)
     int dose1Count; //    title: Počet podaných prvých dávok vakcín pre daný deň a kraj

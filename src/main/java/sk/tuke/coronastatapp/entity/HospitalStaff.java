@@ -16,7 +16,9 @@ public class HospitalStaff {
     @Column(nullable = false)
     @GeneratedValue //??? ma to byt Generated Value ?
     int id; // integer title: Interné id záznamu
-    String reportedAt; // string($date-time) title:Čas, kedy záznam reportovala nemocnica example:2020-01-13 12:34:56
+
+    @Column(nullable = false)
+    Date reportedAt; // string($date-time) title:Čas, kedy záznam reportovala nemocnica example:2020-01-13 12:34:56
 
     @Column(nullable = false)
     float outOfWorkRatioDoctor; // number($float) title: Percentuálny podiel doktorov, ktorí majú potvrdený COVID
@@ -42,7 +44,7 @@ public class HospitalStaff {
     public HospitalStaff() {
     }
 
-    public HospitalStaff(int hospitalId, String reportedAt, float outOfWorkRatioDoctor, float outOfWorkRatioNurse,
+    public HospitalStaff(int hospitalId, Date reportedAt, float outOfWorkRatioDoctor, float outOfWorkRatioNurse,
                          float outOfWorkRatioOther, Date updatedAt, Date publishedOn) {
         this.hospitalId = hospitalId;
         this.reportedAt = reportedAt;
@@ -61,11 +63,11 @@ public class HospitalStaff {
         this.hospitalId = hospitalId;
     }
 
-    public String getReportedAt() {
+    public Date getReportedAt() {
         return reportedAt;
     }
 
-    public void setReportedAt(String reportedAt) {
+    public void setReportedAt(Date reportedAt) {
         this.reportedAt = reportedAt;
     }
 

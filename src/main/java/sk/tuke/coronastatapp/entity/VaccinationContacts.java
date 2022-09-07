@@ -6,8 +6,9 @@ import java.util.Date;
 @Entity
 public class VaccinationContacts {
 
+    // Kde mam dat @Id anotaciu ? V  scheme nie je, ze to ma aj interne ID, pritom ine tabulky maju aj interne ID
+    //dal som preto @Id k tejto premennej
     @Id // preverit ci staci @Id...., Ci netreba aj inu anotaciu ?
-    // v scheme nie je ze to ma aj interne ID, pritom ine tabulky maju aj interne ID
     @Column(nullable = false)
     @OneToOne
     @JoinColumn(name = "Hospital.id")

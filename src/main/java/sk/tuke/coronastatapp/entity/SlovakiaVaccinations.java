@@ -10,9 +10,10 @@ import java.util.Date;
 public class SlovakiaVaccinations {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue // toto je otazne
     @Column(nullable = false)
     String id;    //   title: Interné id záznamu
+    // Preco je to String ?
 
     @Column(nullable = false)
     int dose1Count;     //title: Počet podaných prvých dávok vakcín pre daný deň
@@ -102,5 +103,18 @@ public class SlovakiaVaccinations {
 
     public void setPublishedOn(Date publishedOn) {
         this.publishedOn = publishedOn;
+    }
+
+    @Override
+    public String toString() {
+        return "SlovakiaVaccinations{" +
+                "id='" + id + '\'' +
+                ", dose1Count=" + dose1Count +
+                ", dose2Count=" + dose2Count +
+                ", dose1Sum=" + dose1Sum +
+                ", dose2Sum=" + dose2Sum +
+                ", updatedAt=" + updatedAt +
+                ", publishedOn=" + publishedOn +
+                '}';
     }
 }

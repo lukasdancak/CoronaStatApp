@@ -9,13 +9,13 @@ public class Vaccinations {
     @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "Vaccine.id")
-    int vaccineId;
+    Vaccine vaccineId;
     // integer title: Interné id vakcíny z /api/vaccines
 
     @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "Region.id")
-    int regionId;
+    Region regionId;
     // integer title: Interné id regiónu z regiónov z /api/ regions alebo null.
     // Hodnota null znamená, že dáta  nie sú priradené žiadnemu kraju.
 
@@ -43,7 +43,7 @@ public class Vaccinations {
     public Vaccinations() {
     }
 
-    public Vaccinations(int vaccineId, int regionId, int dose1_count, int dose2Count, Date updatedAt,
+    public Vaccinations(Vaccine vaccineId, Region regionId, int dose1_count, int dose2Count, Date updatedAt,
                         Date publishedOn) {
         this.vaccineId = vaccineId;
         this.regionId = regionId;
@@ -53,19 +53,19 @@ public class Vaccinations {
         this.publishedOn = publishedOn;
     }
 
-    public int getVaccineId() {
+    public Vaccine getVaccineId() {
         return vaccineId;
     }
 
-    public void setVaccineId(int vaccineId) {
+    public void setVaccineId(Vaccine vaccineId) {
         this.vaccineId = vaccineId;
     }
 
-    public int getRegionId() {
+    public Region getRegionId() {
         return regionId;
     }
 
-    public void setRegionId(int regionId) {
+    public void setRegionId(Region regionId) {
         this.regionId = regionId;
     }
 

@@ -12,7 +12,7 @@ public class VaccinationContacts {
     @Column(nullable = false)
     @OneToOne
     @JoinColumn(name = "Hospital.id")
-    int hospitalId;
+    Hospital hospitalId;
 
     @Column(nullable = false)
     String substitutesPhones;
@@ -33,10 +33,9 @@ public class VaccinationContacts {
     Date updatedAt;
 
     public VaccinationContacts() {
-        this.hospitalId = hospitalId;
     }
 
-    public VaccinationContacts(int hospitalId, String substitutesPhones, String substitutesEmails,
+    public VaccinationContacts(Hospital hospitalId, String substitutesPhones, String substitutesEmails,
                                String substitutesLink, String substitutesNote,
                                boolean isAcceptingNewRegistrations, Date updatedAt) {
         this.hospitalId = hospitalId;
@@ -48,11 +47,11 @@ public class VaccinationContacts {
         this.updatedAt = updatedAt;
     }
 
-    public int getHospitalId() {
+    public Hospital getHospitalId() {
         return hospitalId;
     }
 
-    public void setHospitalId(int hospitalId) {
+    public void setHospitalId(Hospital hospitalId) {
         this.hospitalId = hospitalId;
     }
 

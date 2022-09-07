@@ -9,7 +9,7 @@ public class HospitalStaff {
     @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "Hospital.id")
-    int hospitalId; //	integer title: Interné id nemocnice z /api/hospitals
+    Hospital hospitalId; //	integer title: Interné id nemocnice z /api/hospitals
 
 
     @Id
@@ -44,7 +44,7 @@ public class HospitalStaff {
     public HospitalStaff() {
     }
 
-    public HospitalStaff(int hospitalId, Date reportedAt, float outOfWorkRatioDoctor, float outOfWorkRatioNurse,
+    public HospitalStaff(Hospital hospitalId, Date reportedAt, float outOfWorkRatioDoctor, float outOfWorkRatioNurse,
                          float outOfWorkRatioOther, Date updatedAt, Date publishedOn) {
         this.hospitalId = hospitalId;
         this.reportedAt = reportedAt;
@@ -55,11 +55,11 @@ public class HospitalStaff {
         this.publishedOn = publishedOn;
     }
 
-    public int getHospitalId() {
+    public Hospital getHospitalId() {
         return hospitalId;
     }
 
-    public void setHospitalId(int hospitalId) {
+    public void setHospitalId(Hospital hospitalId) {
         this.hospitalId = hospitalId;
     }
 

@@ -6,7 +6,8 @@ import java.util.Date;
 @Entity
 public class VaccinationContacts {
 
-    @Id // preverit ci staci @Id...., Nie je to aj foreign key,alebo ina anotacia? ?
+    @Id // preverit ci staci @Id...., Ci netreba aj inu anotaciu ?
+    // v scheme nie je ze to ma aj interne ID, pritom ine tabulky maju aj interne ID
     @Column(nullable = false)
     @OneToOne
     @JoinColumn(name = "Hospital.id")

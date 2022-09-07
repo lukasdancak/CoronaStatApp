@@ -18,7 +18,8 @@ public class Vaccinations {
 
     @Id
     @Column(nullable = false)
-    //@GeneratedValue //??? ma to byt Generated Value ?
+    //@GeneratedValue // moze to byt Generated Value, ked je to string ?
+    // preco je to String, ked v HospitalStaff je interne ID integer ?
     String id; // string title: Interné id záznamu
     int dose1_count;    // integer title: Počet podaných prvých dávok vakcín pre daný deň, kraj a typ vakcíny
 

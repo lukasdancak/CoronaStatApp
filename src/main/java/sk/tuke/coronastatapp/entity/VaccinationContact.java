@@ -8,6 +8,7 @@ public class VaccinationContact {
 
     //mnou pridana premenna id, nie je v korona.gov.sk tabulke - lebo inak ma hibernate problem. L.Dancak
     @Id
+    @GeneratedValue
     int id;
 
     @OneToOne

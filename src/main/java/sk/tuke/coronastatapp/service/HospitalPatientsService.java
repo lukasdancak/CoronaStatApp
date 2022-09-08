@@ -5,7 +5,7 @@ import sk.tuke.coronastatapp.entity.HospitalPatients;
 import java.util.List;
 
 public interface HospitalPatientsService {
-    void addHospitalPatients(HospitalPatients hospitalPatientsService);
+    void addHospitalPatients(HospitalPatients hospitalPatients);
 
     List<HospitalPatients> getAllHospitalPatients();
 }

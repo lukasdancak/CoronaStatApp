@@ -7,38 +7,46 @@ import java.util.Date;
 public class VaccinationContact {
 
     //mnou pridana premenna id, nie je v korona.gov.sk tabulke - lebo inak ma hibernate problem. L.Dancak
+    // GeneratedValue preto, lebo je to nami pridana premenna, musi byt vygenerovana
     @Id
     @GeneratedValue
-    int id;
+    private int id;
 
     @OneToOne
-    @JoinColumn(name = "Hospital.id")
-    Hospital hospitalId;
+    @JoinColumn(name = "Hospital.id", nullable = false)
+    private Hospital hospitalId;
+    //integer title: Interné id poskytovateľa zdravotnej starostlivosti
 
     @Column(nullable = false)
-    String substitutesPhones;
+    private String substitutesPhones;
+    //string title: Telefonický kontakt pre registráciu náhradníkov na očkovanie
 
     @Column(nullable = false)
-    String substitutesEmails;
+    private String substitutesEmails;
+    //string title: Emailový kontakt pre registráciu náhradníkov na očkovanie
 
     @Column(nullable = false)
-    String substitutesLink;
+    private String substitutesLink;
+    //string title: Webstránka s informáciami pre registráciu náhradníkov na očkovanie
 
     @Column(nullable = false)
-    String substitutesNote;
+    private String substitutesNote;
+    //string title: Dôležitá poznámka pre registráciu náhradníkov na očkovanie
 
     @Column(nullable = false)
-    boolean isAcceptingNewRegistrations;
+    private boolean isAcceptingNewRegistrations;
 
     @Column(nullable = false)
-    Date updatedAt;
+    private Date updatedAt;
+    //string($date-time) title: Čas poslednej aktualizácie záznamu (čas poslednej zmeny hodnoty niektorého
+    // z atribútov záznamu) example: 2020-01-13 12:34:56
 
     public VaccinationContact() {
     }
 
     public VaccinationContact(Hospital hospitalId, String substitutesPhones, String substitutesEmails,
-                              String substitutesLink, String substitutesNote,
-                              boolean isAcceptingNewRegistrations, Date updatedAt) {
+                              String substitutesLink, String substitutesNote, boolean isAcceptingNewRegistrations,
+                              Date updatedAt) {
         this.hospitalId = hospitalId;
         this.substitutesPhones = substitutesPhones;
         this.substitutesEmails = substitutesEmails;

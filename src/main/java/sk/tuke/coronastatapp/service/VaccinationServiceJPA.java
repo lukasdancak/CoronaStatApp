@@ -21,7 +21,7 @@ public class VaccinationServiceJPA implements VaccinationService {
     }
 
     @Override
-    public List<Vaccination> getVaccinations() {
+    public List<Vaccination> getAllVaccinations() {
         return entityManager.createQuery("select v from Vaccination v").getResultList();
     }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 public interface VaccinationService {
     void addVaccination(Vaccination vaccination);
 
-    List<Vaccination> getVaccinations();
+    List<Vaccination> getAllVaccinations();
 }

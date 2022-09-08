@@ -16,11 +16,11 @@ public class VaccinationContactServiceJPA implements VaccinationContactService {
 
     @Override
     public void addVaccination(VaccinationContact vaccinationContact) {
-
+        entityManager.persist(vaccinationContact);
     }
 
     @Override
     public List<VaccinationContact> getAllVaccinationContacts() {
-        return null;
+        return entityManager.createQuery("select v from VaccinationContact v").getResultList();
     }
 }

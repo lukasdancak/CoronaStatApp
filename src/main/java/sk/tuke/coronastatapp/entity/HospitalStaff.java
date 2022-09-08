@@ -6,7 +6,6 @@ import java.util.Date;
 @Entity
 public class HospitalStaff {
 
-    @Column(nullable = false)
     @ManyToOne
     @JoinColumn(name = "Hospital.id")
     Hospital hospitalId; //	integer title: Interné id nemocnice z /api/hospitals

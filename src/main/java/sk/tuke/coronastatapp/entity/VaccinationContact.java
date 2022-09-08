@@ -6,10 +6,10 @@ import java.util.Date;
 @Entity
 public class VaccinationContact {
 
-    // Kde mam dat @Id anotaciu ? V  scheme nie je, ze to ma aj interne ID, pritom ine tabulky maju aj interne ID
-    //dal som preto @Id k tejto premennej
-    @Id // preverit ci staci @Id...., Ci netreba aj inu anotaciu ?
-    @Column(nullable = false)
+    //mnou pridana premenna id, nie je v korona.gov.sk tabulke - lebo inak ma hibernate problem. L.Dancak
+    @Id
+    int id;
+
     @OneToOne
     @JoinColumn(name = "Hospital.id")
     Hospital hospitalId;

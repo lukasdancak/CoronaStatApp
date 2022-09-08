@@ -6,13 +6,13 @@ import java.util.Date;
 @Entity
 public class Vaccination {
 
-    @Column(nullable = false)
+
     @ManyToOne
     @JoinColumn(name = "Vaccine.id")
     Vaccine vaccineId;
     // integer title: Interné id vakcíny z /api/vaccines
 
-    @Column(nullable = false)
+    
     @ManyToOne
     @JoinColumn(name = "Region.id")
     Region regionId;

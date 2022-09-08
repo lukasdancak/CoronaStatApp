@@ -1,6 +1,6 @@
 package sk.tuke.coronastatapp.service;
 
-import sk.tuke.coronastatapp.entity.HospitalStaff
+import sk.tuke.coronastatapp.entity.HospitalStaff;
 
 import java.util.List;
 

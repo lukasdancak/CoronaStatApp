@@ -7,24 +7,27 @@ import java.util.Date;
 public class HospitalStaff {
 
     @ManyToOne
-    @JoinColumn(name = "Hospital.id")
-    Hospital hospitalId; //	integer title: Interné id nemocnice z /api/hospitals
-
+    @JoinColumn(name = "Hospital.id", nullable = false)
+    Hospital hospitalId;
+    //	integer title: Interné id nemocnice z /api/hospitals
 
     @Id
     @Column(nullable = false)
-    @GeneratedValue //??? ma to byt Generated Value ?
-    int id; // integer title: Interné id záznamu
+    int id;
+    // integer title: Interné id záznamu
 
     @Column(nullable = false)
-    Date reportedAt; // string($date-time) title:Čas, kedy záznam reportovala nemocnica example:2020-01-13 12:34:56
+    Date reportedAt;
+    // string($date-time) title:Čas, kedy záznam reportovala nemocnica example:2020-01-13 12:34:56
 
     @Column(nullable = false)
-    float outOfWorkRatioDoctor; // number($float) title: Percentuálny podiel doktorov, ktorí majú potvrdený COVID
+    float outOfWorkRatioDoctor;
+    // number($float) title: Percentuálny podiel doktorov, ktorí majú potvrdený COVID
     // alebo sú v karanténe z počtu všetkých doktorov
 
     @Column(nullable = false)
-    float outOfWorkRatioNurse; // number($float) title: Percentuálny podiel sestier, ktoré majú potvrdený COVID,
+    float outOfWorkRatioNurse;
+    // number($float) title: Percentuálny podiel sestier, ktoré majú potvrdený COVID,
     // alebo sú v karanténe z počtu všetkých sestier
 
     @Column(nullable = false)
@@ -43,9 +46,11 @@ public class HospitalStaff {
     public HospitalStaff() {
     }
 
-    public HospitalStaff(Hospital hospitalId, Date reportedAt, float outOfWorkRatioDoctor, float outOfWorkRatioNurse,
-                         float outOfWorkRatioOther, Date updatedAt, Date publishedOn) {
+    public HospitalStaff(Hospital hospitalId, int id, Date reportedAt, float outOfWorkRatioDoctor,
+                         float outOfWorkRatioNurse, float outOfWorkRatioOther, Date updatedAt,
+                         Date publishedOn) {
         this.hospitalId = hospitalId;
+        this.id = id;
         this.reportedAt = reportedAt;
         this.outOfWorkRatioDoctor = outOfWorkRatioDoctor;
         this.outOfWorkRatioNurse = outOfWorkRatioNurse;

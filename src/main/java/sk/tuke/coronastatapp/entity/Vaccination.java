@@ -8,45 +8,50 @@ public class Vaccination {
 
 
     @ManyToOne
-    @JoinColumn(name = "Vaccine.id")
+    @JoinColumn(name = "Vaccine.id", nullable = false)
     Vaccine vaccineId;
     // integer title: Interné id vakcíny z /api/vaccines
 
-    
+
     @ManyToOne
-    @JoinColumn(name = "Region.id")
+    @JoinColumn(name = "Region.id", nullable = false)
     Region regionId;
     // integer title: Interné id regiónu z regiónov z /api/ regions alebo null.
     // Hodnota null znamená, že dáta  nie sú priradené žiadnemu kraju.
 
     @Id
     @Column(nullable = false)
-    //@GeneratedValue // moze to byt Generated Value, ked je to string ?
     // preco je to String, ked v HospitalStaff je interne ID integer ?
-    String id; // string title: Interné id záznamu
+    String id;
+    // string title: Interné id záznamu
 
     @Column(nullable = false)
-    int dose1_count;    // integer title: Počet podaných prvých dávok vakcín pre daný deň, kraj a typ vakcíny
+    int dose1_count;
+    // integer title: Počet podaných prvých dávok vakcín pre daný deň, kraj a typ vakcíny
 
     @Column(nullable = false)
-    int dose2Count;     // integer title: Počet podaných druhých dávok vakcín pre daný deň, kraj a typ vakcíny
+    int dose2Count;
+    // integer title: Počet podaných druhých dávok vakcín pre daný deň, kraj a typ vakcíny
 
     @Column(nullable = false)
-    Date updatedAt;   //string($date-time) title: Čas poslednej aktualizácie záznamu(čas poslednej zmeny hodnoty
+    Date updatedAt;
+    //string($date-time) title: Čas poslednej aktualizácie záznamu(čas poslednej zmeny hodnoty
     // niektorého z atribútov záznamu) example:2020-01-13 12:34:56
 
     @Column(nullable = false)
-    Date publishedOn; //string($date-time) title:Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík
+    Date publishedOn;
+    //string($date-time) title:Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík
     // example:2020-01-13
 
 
     public Vaccination() {
     }
 
-    public Vaccination(Vaccine vaccineId, Region regionId, int dose1_count, int dose2Count, Date updatedAt,
-                       Date publishedOn) {
+    public Vaccination(Vaccine vaccineId, Region regionId, String id, int dose1_count,
+                       int dose2Count, Date updatedAt, Date publishedOn) {
         this.vaccineId = vaccineId;
         this.regionId = regionId;
+        this.id = id;
         this.dose1_count = dose1_count;
         this.dose2Count = dose2Count;
         this.updatedAt = updatedAt;

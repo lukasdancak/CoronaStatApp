@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Vaccinations {
+public class Vaccination {
 
     @Column(nullable = false)
     @ManyToOne
@@ -40,11 +40,11 @@ public class Vaccinations {
     // example:2020-01-13
 
 
-    public Vaccinations() {
+    public Vaccination() {
     }
 
-    public Vaccinations(Vaccine vaccineId, Region regionId, int dose1_count, int dose2Count, Date updatedAt,
-                        Date publishedOn) {
+    public Vaccination(Vaccine vaccineId, Region regionId, int dose1_count, int dose2Count, Date updatedAt,
+                       Date publishedOn) {
         this.vaccineId = vaccineId;
         this.regionId = regionId;
         this.dose1_count = dose1_count;

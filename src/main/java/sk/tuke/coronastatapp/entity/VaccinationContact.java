@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class VaccinationContacts {
+public class VaccinationContact {
 
     // Kde mam dat @Id anotaciu ? V  scheme nie je, ze to ma aj interne ID, pritom ine tabulky maju aj interne ID
     //dal som preto @Id k tejto premennej
@@ -32,12 +32,12 @@ public class VaccinationContacts {
     @Column(nullable = false)
     Date updatedAt;
 
-    public VaccinationContacts() {
+    public VaccinationContact() {
     }
 
-    public VaccinationContacts(Hospital hospitalId, String substitutesPhones, String substitutesEmails,
-                               String substitutesLink, String substitutesNote,
-                               boolean isAcceptingNewRegistrations, Date updatedAt) {
+    public VaccinationContact(Hospital hospitalId, String substitutesPhones, String substitutesEmails,
+                              String substitutesLink, String substitutesNote,
+                              boolean isAcceptingNewRegistrations, Date updatedAt) {
         this.hospitalId = hospitalId;
         this.substitutesPhones = substitutesPhones;
         this.substitutesEmails = substitutesEmails;

@@ -18,8 +18,8 @@ public class SpringClient {
     }
 
     @Bean
-    public CommandLineRunner runnerFillerJPA(DataFillerJPA console) {
-        return s -> console.play();
+    public CommandLineRunner runnerDataFillerJPA(DataFillerJPA console) {
+        return s -> console.fill();
     }
 
     @Bean

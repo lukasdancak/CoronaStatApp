@@ -7,44 +7,44 @@ import java.util.Date;
 public class HospitalPatients {
 
     @ManyToOne
-    @JoinColumn(name = "Hospital.id")
-    Hospital hospital;
+    @JoinColumn(name = "Hospital.id", nullable = false)
+    private Hospital hospital;
     //integer title: Interné id nemocnice z /api/hospitals
 
     @Id
     @Column(nullable = false)
-    int id;
+    private int id;
     // integer title: Interné id záznamu
 
     @Column(nullable = false)
-    Date reportedAt;
+    private Date reportedAt;
     // string($date-time) title: Čas, kedy záznam reportovala nemocnica
     // example: 2020-01-13 12:34:56
 
     @Column(nullable = false)
-    int ventilatedCovid;
+    private int ventilatedCovid;
     // integer title: Počet pacientov, ktorí majú COVID a sú na pľúcnej ventilácii
 
     @Column(nullable = false)
-    int nonCovid;
+    private int nonCovid;
     // integer title: Počet pacientov, ktorí nemajú potvrdený COVID a nemajú ani podozrenie na COVID
 
     @Column(nullable = false)
-    int confirmedCovid;
+    private int confirmedCovid;
     // integer title: Počet pacientov, ktorí majú potvrdený COVID
 
     @Column(nullable = false)
-    int suspectedCovid;
+    private int suspectedCovid;
     // integer title: Počet pacientov, ktorí majú podozrenie na COVID
 
     @Column(nullable = false)
-    Date updatedAt;
+    private Date updatedAt;
     // string($date-time) title: Čas poslednej aktualizácie záznamu (čas poslednej zmeny hodnoty niektorého
     // z atribútov záznamu)
     //example: 2020-01-13 12:34:56
 
     @Column(nullable = false)
-    Date publishedOn;
+    private Date publishedOn;
     // string($date-time) title: Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík
     // example: 2020-01-13
 
@@ -133,6 +133,10 @@ public class HospitalPatients {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "HospitalPatients{" +
@@ -147,4 +151,5 @@ public class HospitalPatients {
                 ", publishedOn=" + publishedOn +
                 '}';
     }
+    
 }

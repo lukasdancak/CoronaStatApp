@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 public class VaccinationContact {
 
-    //mnou pridana premenna id, nie je v korona.gov.sk tabulke - lebo inak ma hibernate problem. L.Dancak
+    //mnou pridana premenna id, nie je v korona.gov.sk tabulke - pridana, lebo inak ma hibernate problem. L.Dancak
     // GeneratedValue preto, lebo je to nami pridana premenna, musi byt vygenerovana
     @Id
     @GeneratedValue
@@ -14,7 +14,7 @@ public class VaccinationContact {
 
     @OneToOne
     @JoinColumn(name = "Hospital.id", nullable = false)
-    private Hospital hospitalId;
+    private Hospital hospital;
     //integer title: Interné id poskytovateľa zdravotnej starostlivosti
 
     @Column(nullable = false)
@@ -47,7 +47,7 @@ public class VaccinationContact {
     public VaccinationContact(Hospital hospitalId, String substitutesPhones, String substitutesEmails,
                               String substitutesLink, String substitutesNote, boolean isAcceptingNewRegistrations,
                               Date updatedAt) {
-        this.hospitalId = hospitalId;
+        this.hospital = hospitalId;
         this.substitutesPhones = substitutesPhones;
         this.substitutesEmails = substitutesEmails;
         this.substitutesLink = substitutesLink;
@@ -56,12 +56,12 @@ public class VaccinationContact {
         this.updatedAt = updatedAt;
     }
 
-    public Hospital getHospitalId() {
-        return hospitalId;
+    public Hospital getHospital() {
+        return hospital;
     }
 
-    public void setHospitalId(Hospital hospitalId) {
-        this.hospitalId = hospitalId;
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
 
     public String getSubstitutesPhones() {
@@ -112,10 +112,12 @@ public class VaccinationContact {
         this.updatedAt = updatedAt;
     }
 
+
     @Override
     public String toString() {
-        return "VaccinationContacts{" +
-                "hospitalId=" + hospitalId +
+        return "VaccinationContact{" +
+                "id=" + id +
+                ", hospitalId=" + hospital +
                 ", substitutesPhones='" + substitutesPhones + '\'' +
                 ", substitutesEmails='" + substitutesEmails + '\'' +
                 ", substitutesLink='" + substitutesLink + '\'' +

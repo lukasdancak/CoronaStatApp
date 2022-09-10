@@ -8,7 +8,7 @@ public class HospitalBeds {
 
     @ManyToOne
     @JoinColumn(name = "Hospital.id", nullable = false)
-    private Hospital hospitalId;
+    private Hospital hospital;
     //integer title: Interné id nemocnice z /api/hospitals
 
     @Id
@@ -65,7 +65,7 @@ public class HospitalBeds {
     public HospitalBeds(Hospital hospitalId, int id, Date reportedAt, Date updatedAt, Date publishedOn,
                         int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid, int occupiedOaimCovid,
                         int occupied_o2_covid, int occupied_other_covid) {
-        this.hospitalId = hospitalId;
+        this.hospital = hospitalId;
         this.id = id;
         this.reportedAt = reportedAt;
         this.updatedAt = updatedAt;
@@ -79,8 +79,8 @@ public class HospitalBeds {
         this.occupied_other_covid = occupied_other_covid;
     }
 
-    public Hospital getHospitalId() {
-        return hospitalId;
+    public Hospital getHospital() {
+        return hospital;
     }
 
     public int getId() {
@@ -130,7 +130,7 @@ public class HospitalBeds {
     @Override
     public String toString() {
         return "HospitalBeds{" +
-                "hospitalId=" + hospitalId +
+                "hospitalId=" + hospital +
                 ", id=" + id +
                 ", reportedAt=" + reportedAt +
                 ", updatedAt=" + updatedAt +

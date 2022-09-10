@@ -9,37 +9,37 @@ public class Vaccination {
 
     @ManyToOne
     @JoinColumn(name = "Vaccine.id", nullable = false)
-    Vaccine vaccineId;
+    private Vaccine vaccine;
     // integer title: Interné id vakcíny z /api/vaccines
 
 
     @ManyToOne
     @JoinColumn(name = "Region.id", nullable = false)
-    Region regionId;
+    private Region region;
     // integer title: Interné id regiónu z regiónov z /api/ regions alebo null.
     // Hodnota null znamená, že dáta  nie sú priradené žiadnemu kraju.
 
     @Id
     @Column(nullable = false)
     // preco je to String, ked v HospitalStaff je interne ID integer ?
-    String id;
+    private String id;
     // string title: Interné id záznamu
 
     @Column(nullable = false)
-    int dose1_count;
+    private int dose1_count;
     // integer title: Počet podaných prvých dávok vakcín pre daný deň, kraj a typ vakcíny
 
     @Column(nullable = false)
-    int dose2Count;
+    private int dose2Count;
     // integer title: Počet podaných druhých dávok vakcín pre daný deň, kraj a typ vakcíny
 
     @Column(nullable = false)
-    Date updatedAt;
+    private Date updatedAt;
     //string($date-time) title: Čas poslednej aktualizácie záznamu(čas poslednej zmeny hodnoty
     // niektorého z atribútov záznamu) example:2020-01-13 12:34:56
 
     @Column(nullable = false)
-    Date publishedOn;
+    private Date publishedOn;
     //string($date-time) title:Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík
     // example:2020-01-13
 
@@ -49,8 +49,8 @@ public class Vaccination {
 
     public Vaccination(Vaccine vaccineId, Region regionId, String id, int dose1_count,
                        int dose2Count, Date updatedAt, Date publishedOn) {
-        this.vaccineId = vaccineId;
-        this.regionId = regionId;
+        this.vaccine = vaccineId;
+        this.region = regionId;
         this.id = id;
         this.dose1_count = dose1_count;
         this.dose2Count = dose2Count;
@@ -58,20 +58,20 @@ public class Vaccination {
         this.publishedOn = publishedOn;
     }
 
-    public Vaccine getVaccineId() {
-        return vaccineId;
+    public Vaccine getVaccine() {
+        return vaccine;
     }
 
-    public void setVaccineId(Vaccine vaccineId) {
-        this.vaccineId = vaccineId;
+    public void setVaccine(Vaccine vaccine) {
+        this.vaccine = vaccine;
     }
 
-    public Region getRegionId() {
-        return regionId;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setRegionId(Region regionId) {
-        this.regionId = regionId;
+    public void setRegion(Region region) {
+        this.region = region;
     }
 
     public int getDose1_count() {
@@ -110,11 +110,15 @@ public class Vaccination {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Vaccinations{" +
-                "vaccineId=" + vaccineId +
-                ", regionId=" + regionId +
+                "vaccineId=" + vaccine +
+                ", regionId=" + region +
                 ", id='" + id + '\'' +
                 ", dose1_count=" + dose1_count +
                 ", dose2Count=" + dose2Count +

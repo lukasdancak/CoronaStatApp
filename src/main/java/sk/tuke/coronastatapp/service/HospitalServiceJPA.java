@@ -3,6 +3,7 @@ package sk.tuke.coronastatapp.service;
 import sk.tuke.coronastatapp.entity.Hospital;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -15,16 +16,23 @@ public class HospitalServiceJPA implements HospitalService {
 
     @Override
     public void addHospital(Hospital hospital) {
-        entityManager.persist(hospital);
+        try {
+            entityManager.createQuery("SELECT h FROM Hospital h WHERE h.id = :id")
+                    .setParameter("id", hospital.getId())
+                    .getSingleResult();
+            System.out.println("Record with this ID already exists in DB!");
+        } catch (NoResultException e) {
+            entityManager.persist(hospital);
+        }
     }
 
     @Override
     public List<Hospital> getAllHospitals() {
-        return entityManager.createQuery("select h from Hospital h").getResultList();
+        return entityManager.createQuery("SELECT h FROM Hospital h").getResultList();
     }
 
     @Override
     public void deleteAllHospitals() {
-        entityManager.createNativeQuery("DELETE from hospital").executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM hospital").executeUpdate();
     }
 }

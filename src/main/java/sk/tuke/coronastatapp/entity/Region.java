@@ -23,6 +23,10 @@ public class Region {
     public Region() {
     }
 
+    public Region(int id) {
+        this.id = id;
+    }
+
     public Region(int id, String title, String code, String abbreviation) {
         this.id = id;
         this.title = title;

@@ -9,4 +9,6 @@ public interface VaccinationContactService {
     void addVaccination(VaccinationContact vaccinationContact);
 
     List<VaccinationContact> getAllVaccinationContacts();
+
+    void deleteAllVaccinationContacts();
 }

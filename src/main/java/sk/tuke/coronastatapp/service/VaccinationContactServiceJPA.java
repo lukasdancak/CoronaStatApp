@@ -1,6 +1,5 @@
 package sk.tuke.coronastatapp.service;
 
-import sk.tuke.coronastatapp.entity.Vaccination;
 import sk.tuke.coronastatapp.entity.VaccinationContact;
 
 import javax.persistence.EntityManager;
@@ -22,5 +21,11 @@ public class VaccinationContactServiceJPA implements VaccinationContactService {
     @Override
     public List<VaccinationContact> getAllVaccinationContacts() {
         return entityManager.createQuery("select v from VaccinationContact v").getResultList();
+    }
+
+    @Override
+    public void deleteAllVaccinationContacts() {
+        entityManager.createNativeQuery("DELETE from vaccination_contact").executeUpdate();
+
     }
 }

@@ -4,8 +4,10 @@ import sk.tuke.coronastatapp.entity.RegionHospitalPatients;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 public class RegionHospitalPatientsServiceJPA implements RegionHospitalPatientsService {
 
     @PersistenceContext

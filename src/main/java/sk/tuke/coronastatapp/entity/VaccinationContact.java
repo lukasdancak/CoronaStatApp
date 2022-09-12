@@ -1,9 +1,20 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+// TypeDef je tu kvoli tomu, lebo List<String> v entite prepajam na stlpcek databazy typu array text[]
+//riesenie od vladmihalcea.com: https://vladmihalcea.com/postgresql-array-java-list/
+@TypeDef(
+        name = "list-array",
+        typeClass = ListArrayType.class
+)
 public class VaccinationContact {
 
     //mnou pridana premenna id, nie je v korona.gov.sk tabulke - pridana, lebo inak ma hibernate problem. L.Dancak
@@ -17,21 +28,37 @@ public class VaccinationContact {
     private Hospital hospital;
     //integer title: Interné id poskytovateľa zdravotnej starostlivosti
 
-    @Column(nullable = false)
-    private String substitutesPhones;
+    /***********************************
+     // !!! substitutesPhones a substitutesEmails su v databaze ako array
+     // pre namapovanie som pouzil riesenie od vladmihalcea.com:
+     //https://vladmihalcea.com/postgresql-array-java-list/
+     // v Entite to mozem mapovat na obycajnu array, alebo List, mapujem na List
+     ******************************/
+
+    @Type(type = "list-array")
+    @Column(
+            columnDefinition = "text[]"
+    )
+    private List<String> substitutesPhones;
     //string title: Telefonický kontakt pre registráciu náhradníkov na očkovanie
 
-    @Column(nullable = false)
-    private String substitutesEmails;
+
+    @Type(type = "list-array")
+    @Column(
+            columnDefinition = "text[]"
+    )
+    private List<String> substitutesEmails;
     //string title: Emailový kontakt pre registráciu náhradníkov na očkovanie
 
-    @Column(nullable = false)
+
     private String substitutesLink;
     //string title: Webstránka s informáciami pre registráciu náhradníkov na očkovanie
+    //moze byt null
 
-    @Column(nullable = false)
+
     private String substitutesNote;
     //string title: Dôležitá poznámka pre registráciu náhradníkov na očkovanie
+    //moze byt null
 
     @Column(nullable = false)
     private boolean isAcceptingNewRegistrations;
@@ -44,7 +71,7 @@ public class VaccinationContact {
     public VaccinationContact() {
     }
 
-    public VaccinationContact(Hospital hospitalId, String substitutesPhones, String substitutesEmails,
+    public VaccinationContact(Hospital hospitalId, List<String> substitutesPhones, List<String> substitutesEmails,
                               String substitutesLink, String substitutesNote, boolean isAcceptingNewRegistrations,
                               Date updatedAt) {
         this.hospital = hospitalId;
@@ -64,19 +91,19 @@ public class VaccinationContact {
         this.hospital = hospital;
     }
 
-    public String getSubstitutesPhones() {
+    public List<String> getSubstitutesPhones() {
         return substitutesPhones;
     }
 
-    public void setSubstitutesPhones(String substitutesPhones) {
+    public void setSubstitutesPhones(List<String> substitutesPhones) {
         this.substitutesPhones = substitutesPhones;
     }
 
-    public String getSubstitutesEmails() {
+    public List<String> getSubstitutesEmails() {
         return substitutesEmails;
     }
 
-    public void setSubstitutesEmails(String substitutesEmails) {
+    public void setSubstitutesEmails(List<String> substitutesEmails) {
         this.substitutesEmails = substitutesEmails;
     }
 

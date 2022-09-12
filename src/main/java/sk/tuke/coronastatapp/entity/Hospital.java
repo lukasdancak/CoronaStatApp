@@ -1,5 +1,7 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,7 @@ public class Hospital {
     @Id
     @Column(nullable = false)
     private int id;
+    @JsonProperty("city_id")
     @ManyToOne
     @JoinColumn(name = "City.id", nullable = false)
     private City city;

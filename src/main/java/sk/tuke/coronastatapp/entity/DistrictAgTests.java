@@ -1,5 +1,8 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,21 +12,31 @@ public class DistrictAgTests {
     @Id
     @Column(nullable = false)
     private String id;
+    @JsonProperty("district_id")
     @ManyToOne
     @JoinColumn(name = "District.id", nullable = false)
     private District district;
+    @JsonProperty("positivity_rate")
     @Column(nullable = false)
     private float positivityRate;
+    @JsonProperty("updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false)
     private Date updatedAt;
+    @JsonProperty("published_on")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private Date publishedOn;
+    @JsonProperty("positives_count")
     @Column(nullable = false)
     private int positivesCount;
+    @JsonProperty("negatives_count")
     @Column(nullable = false)
     private int negativesCount;
+    @JsonProperty("positives_sum")
     @Column(nullable = false)
     private int positivesSum;
+    @JsonProperty("negatives_sum")
     @Column(nullable = false)
     private int negativesSum;
 

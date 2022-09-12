@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import sk.tuke.coronastatapp.service.*;
 
 @SpringBootApplication
 @ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
@@ -26,6 +27,39 @@ public class SpringClient {
     public DataFillerJPA consoleJPA() {
         return new DataFillerJPA();
     }
+
+    @Bean
+    public DistrictAgTestsService districtAgTestsService() {
+        return new DistrictAgTestsServiceJPA();
+    }
+
+    @Bean
+    public RegionAgTestsService regionAgTestsService() {
+        return new RegionAgTestsServiceJPA();
+    }
+
+    @Bean
+    public SlovakiaAgTestsService slovakiaAgTestsService() {
+        return new SlovakiaAgTestsServiceJPA();
+    }
+
+    @Bean
+    public HospitalService hospitalService() {
+        return new HospitalServiceJPA();
+    }
+
+    @Bean
+    public CityService cityService() {
+        return new CityServiceJPA();
+    }
+
+    @Bean
+    public DistrictService districtService() {
+        return new DistrictServiceJPA();
+    }
+
+    @Bean
+    public RegionService regionService() { return new RegionServiceJPA(); }
 
 }
 

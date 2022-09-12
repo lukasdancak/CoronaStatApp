@@ -21,4 +21,10 @@ public class HospitalStaffServiceJPA implements HospitalStaffService {
     public List<HospitalStaff> getAllHospitalStaff() {
         return entityManager.createQuery("select s from Staff s").getResultList();
     }
+
+    @Override
+    public void deleteAllHospitalStaff() {
+        entityManager.createNativeQuery("DELETE from hospital_staff").executeUpdate();
+
+    }
 }

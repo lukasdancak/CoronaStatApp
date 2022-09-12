@@ -8,4 +8,6 @@ public interface HospitalStaffService {
     void addHospitalStaff(HospitalStaff hospitalStaff);
 
     List<HospitalStaff> getAllHospitalStaff();
+
+    void deleteAllHospitalStaff();
 }

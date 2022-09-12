@@ -8,4 +8,6 @@ public interface VaccinationService {
     void addVaccination(Vaccination vaccination);
 
     List<Vaccination> getAllVaccinations();
+
+    void deleteAllVaccinations();
 }

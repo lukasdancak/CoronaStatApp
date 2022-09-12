@@ -24,4 +24,10 @@ public class VaccinationServiceJPA implements VaccinationService {
     public List<Vaccination> getAllVaccinations() {
         return entityManager.createQuery("select v from Vaccination v").getResultList();
     }
+
+    @Override
+    public void deleteAllVaccinations() {
+        entityManager.createNativeQuery("DELETE from vaccination").executeUpdate();
+
+    }
 }

@@ -21,8 +21,9 @@ public class RegionHospitalBeds {
     @Column(nullable = false)
     private Date publishedOn;
 
-    @Column(nullable = false)
-    private int regionId;
+    @ManyToOne
+    @JoinColumn(name= "Region.id",nullable = false)
+    private Region region;
 
     @Column(nullable = false)
     private int capacityAll;
@@ -49,12 +50,12 @@ public class RegionHospitalBeds {
     @Column(nullable = false)
     private Date updatedAt;
 
-    public RegionHospitalBeds(int id, Date oldestReportedAt, Date newestReportedAt, Date publishedOn, int regionId, int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid, int occupiedOaimCovid, int occupiedO2Covid, int occupiedOtherCovid, Date updatedAt) {
+    public RegionHospitalBeds(int id, Date oldestReportedAt, Date newestReportedAt, Date publishedOn, Region region, int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid, int occupiedOaimCovid, int occupiedO2Covid, int occupiedOtherCovid, Date updatedAt) {
         this.id = id;
         this.oldestReportedAt = oldestReportedAt;
         this.newestReportedAt = newestReportedAt;
         this.publishedOn = publishedOn;
-        this.regionId = regionId;
+        this.region = region;
         this.capacityAll = capacityAll;
         this.freeAll = freeAll;
         this.capacityCovid = capacityCovid;
@@ -97,12 +98,12 @@ public class RegionHospitalBeds {
         this.publishedOn = publishedOn;
     }
 
-    public int getRegionId() {
-        return regionId;
+    public Region getRegion() {
+        return region;
     }
 
     public void setRegionId(int regionId) {
-        this.regionId = regionId;
+        this.region = region;
     }
 
     public int getCapacityAll() {
@@ -176,7 +177,7 @@ public class RegionHospitalBeds {
                 ", oldestReportedAt=" + oldestReportedAt +
                 ", newestReportedAt=" + newestReportedAt +
                 ", publishedOn=" + publishedOn +
-                ", regionId=" + regionId +
+                ", regionID=" + region +
                 ", capacityAll=" + capacityAll +
                 ", freeAll=" + freeAll +
                 ", capacityCovid=" + capacityCovid +

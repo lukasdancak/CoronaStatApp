@@ -30,4 +30,10 @@ public class VaccineServiceJPA implements VaccineService {
                 .setParameter("vacid", vaccineId)
                 .getSingleResult();
     }
+
+    @Override
+    public void deleteAllVaccine () {
+        entityManager.createNativeQuery("DELETE FROM vaccine").executeUpdate();
+
+    }
 }

@@ -22,5 +22,9 @@ public class HospitalBedsServiceJPA implements HospitalBedsService {
     public List<HospitalBeds> getAllHospitalBeds() {
         return entityManager.createQuery("select hb from HospitalBeds hb").getResultList();
     }
+    @Override
+    public void deleteAllHospitalBeds () {{
+    entityManager.createNativeQuery("DELETE FROM hospitalBeds").executeUpdate();}
+    }
 
 }

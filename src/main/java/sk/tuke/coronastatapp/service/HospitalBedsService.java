@@ -9,4 +9,6 @@ public interface HospitalBedsService {
     void addHospitalBeds(HospitalBeds hospitalBeds);
 
     List<HospitalBeds> getAllHospitalBeds();
+
+    void deleteAllHospitalBeds();
 }

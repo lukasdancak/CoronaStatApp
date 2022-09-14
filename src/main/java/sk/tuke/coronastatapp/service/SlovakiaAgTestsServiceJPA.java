@@ -3,6 +3,7 @@ package sk.tuke.coronastatapp.service;
 import sk.tuke.coronastatapp.entity.SlovakiaAgTests;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -15,16 +16,23 @@ public class SlovakiaAgTestsServiceJPA implements SlovakiaAgTestsService {
 
     @Override
     public void addSlovakiaAgTests(SlovakiaAgTests slovakiaAgTests) {
-        entityManager.persist(slovakiaAgTests);
+        try {
+            entityManager.createQuery("SELECT s FROM SlovakiaAgTests s WHERE s.id = :id")
+                    .setParameter("id", slovakiaAgTests.getId())
+                    .getSingleResult();
+            System.out.println("Record with this ID already exists in DB!");
+        } catch (NoResultException e) {
+            entityManager.persist(slovakiaAgTests);
+        }
     }
 
     @Override
     public List<SlovakiaAgTests> getAllSlovakiaAgTests() {
-        return entityManager.createQuery("select s from SlovakiaAgTests s").getResultList();
+        return entityManager.createQuery("SELECT s FROM SlovakiaAgTests s").getResultList();
     }
 
     @Override
     public void deleteAllSlovakiaAgTests() {
-        entityManager.createNativeQuery("DELETE from slovakia_ag_tests").executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM slovakia_ag_tests").executeUpdate();
     }
 }

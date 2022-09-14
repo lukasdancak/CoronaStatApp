@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DistrictService {
 
-    void addDictrict(District district);
+    void addDistrict(District district);
 
     List<District> getAllDistricts();
 

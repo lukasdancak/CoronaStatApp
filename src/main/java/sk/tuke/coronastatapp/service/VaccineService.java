@@ -11,4 +11,7 @@ public interface VaccineService {
     List<Vaccine> getVaccines();
 
     Vaccine getVaccineById(int vaccineId);
+
+    void deleteAllVaccine();
+
 }

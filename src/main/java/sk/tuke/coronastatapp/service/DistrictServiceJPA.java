@@ -3,6 +3,7 @@ package sk.tuke.coronastatapp.service;
 import sk.tuke.coronastatapp.entity.District;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -14,17 +15,24 @@ public class DistrictServiceJPA implements DistrictService {
     private EntityManager entityManager;
 
     @Override
-    public void addDictrict(District district) {
-        entityManager.persist(district);
+    public void addDistrict(District district) {
+        try {
+            entityManager.createQuery("SELECT d FROM District d WHERE d.id = :id")
+                    .setParameter("id", district.getId())
+                    .getSingleResult();
+            System.out.println("Record with this ID already exists in DB!");
+        } catch (NoResultException e) {
+            entityManager.persist(district);
+        }
     }
 
     @Override
     public List<District> getAllDistricts() {
-        return entityManager.createQuery("select d from District d").getResultList();
+        return entityManager.createQuery("SELECT d FROM District d").getResultList();
     }
 
     @Override
     public void deleteAllDistricts() {
-        entityManager.createNativeQuery("DELETE from district").executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM district").executeUpdate();
     }
 }

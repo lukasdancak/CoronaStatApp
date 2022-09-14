@@ -3,6 +3,7 @@ package sk.tuke.coronastatapp.service;
 import sk.tuke.coronastatapp.entity.Region;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -15,16 +16,23 @@ public class RegionServiceJPA implements RegionService {
 
     @Override
     public void addRegion(Region region) {
-        entityManager.persist(region);
+        try {
+            entityManager.createQuery("SELECT r FROM Region r WHERE r.id = :id")
+                    .setParameter("id", region.getId())
+                    .getSingleResult();
+            System.out.println("Record with this ID already exists in DB!");
+        } catch (NoResultException e) {
+            entityManager.persist(region);
+        }
     }
 
     @Override
     public List<Region> getAllRegions() {
-        return entityManager.createQuery("select r from Region r").getResultList();
+        return entityManager.createQuery("SELECT r FROM Region r").getResultList();
     }
 
     @Override
     public void deleteAllRegions() {
-        entityManager.createNativeQuery("DELETE from region").executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM region").executeUpdate();
     }
 }

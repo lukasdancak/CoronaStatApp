@@ -19,7 +19,7 @@ public class AppReadDataFromDB {
         String line;
         StringBuilder responseContent = new StringBuilder();
         try{
-            URL url = new URL("https://data.korona.gov.sk/api/hospital-patients");
+            URL url = new URL("https://data.korona.gov.sk/api/hospital-beds/by-region\n");
             conn = (HttpURLConnection) url.openConnection();
 
             // Request setup

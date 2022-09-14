@@ -1,3 +1,4 @@
+
 package sk.tuke.coronastatapp.service;
 
 import sk.tuke.coronastatapp.entity.HospitalPatients;
@@ -14,12 +15,17 @@ public class HospitalPatientsServiceJPA implements HospitalPatientsService {
     private EntityManager entityManager;
 
     @Override
-    public void addHospitalPatients(HospitalPatients hospitalPatients) {
-        entityManager.persist(hospitalPatients);
+    public void addHospitalPatients(HospitalPatients HospitalPatients) {
+        entityManager.persist(HospitalPatients);
     }
 
     @Override
     public List<HospitalPatients> getAllHospitalPatients() {
-        return entityManager.createQuery("select hp from HospitalPatients hp").getResultList();
+        return entityManager.createQuery("select hb from HospitalPatients hb").getResultList();
     }
+    @Override
+    public void deleteAllHospitalPatients () {{
+        entityManager.createNativeQuery("DELETE FROM HospitalPatients").executeUpdate();}
+    }
+
 }

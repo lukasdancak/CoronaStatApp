@@ -1,5 +1,7 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class City {
     @Id
     @Column(nullable = false)
     private int id;
+    @JsonProperty("district_id")
     @ManyToOne
     @JoinColumn(name = "District.id", nullable = false)
     private District district;
@@ -20,6 +23,10 @@ public class City {
     private List<Hospital> hospitals;
 
     public City() {
+    }
+
+    public City(int id) {
+        this.id = id;
     }
 
     public City(int id, District district, String title, String code) {

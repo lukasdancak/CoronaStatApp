@@ -15,10 +15,10 @@ public class RegionAgTestsWebServiceRest {
     @Autowired
     private RegionAgTestsService regionAgTestsService;
 
-    @PostMapping("/new")
-    public void addRegionAgTests(@RequestBody RegionAgTests regionAgTests) {
-        regionAgTestsService.addRegionAgTests(regionAgTests);
-    }
+//    @PostMapping("/new")
+//    public void addRegionAgTests(@RequestBody RegionAgTests regionAgTests) {
+//        regionAgTestsService.addRegionAgTests(regionAgTests);
+//    }
 
     @GetMapping
     public List<RegionAgTests> getAllRegionAgTests() {

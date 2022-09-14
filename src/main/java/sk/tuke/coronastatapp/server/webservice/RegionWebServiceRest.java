@@ -14,10 +14,10 @@ public class RegionWebServiceRest {
     @Autowired
     private RegionService regionService;
 
-    @PostMapping("/new")
-    public void addRegion(@RequestBody Region region) {
-        regionService.addRegion(region);
-    }
+//    @PostMapping("/new")
+//    public void addRegion(@RequestBody Region region) {
+//        regionService.addRegion(region);
+//    }
 
     @GetMapping
     public List<Region> getAllRegions() {

@@ -14,10 +14,10 @@ public class CityWebServiceRest {
     @Autowired
     private CityService cityService;
 
-    @PostMapping("/new")
-    public void addCity(@RequestBody City city) {
-        cityService.addCity(city);
-    }
+//    @PostMapping("/new")
+//    public void addCity(@RequestBody City city) {
+//        cityService.addCity(city);
+//    }
 
     @GetMapping
     public List<City> getAllCities() {

@@ -14,10 +14,10 @@ public class DistrictWebServiceRest {
     @Autowired
     private DistrictService districtService;
 
-    @PostMapping("/new")
-    public void addDistrict(@RequestBody District district) {
-        districtService.addDistrict(district);
-    }
+//    @PostMapping("/new")
+//    public void addDistrict(@RequestBody District district) {
+//        districtService.addDistrict(district);
+//    }
 
     @GetMapping
     public List<District> getAllDistricts() {

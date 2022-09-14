@@ -14,10 +14,10 @@ public class HospitalWebServiceRest {
     @Autowired
     private HospitalService hospitalService;
 
-    @PostMapping("/new")
-    public void addHospital(@RequestBody Hospital hospital) {
-        hospitalService.addHospital(hospital);
-    }
+//    @PostMapping("/new")
+//    public void addHospital(@RequestBody Hospital hospital) {
+//        hospitalService.addHospital(hospital);
+//    }
 
     @GetMapping
     public List<Hospital> getAllHospitals() {

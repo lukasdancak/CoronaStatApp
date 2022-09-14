@@ -14,10 +14,10 @@ public class SlovakiaAgTestsWebServiceRest {
     @Autowired
     private SlovakiaAgTestsService slovakiaAgTestsService;
 
-    @PostMapping("/new")
-    public void addSlovakiaAgTests(@RequestBody SlovakiaAgTests slovakiaAgTests) {
-        slovakiaAgTestsService.addSlovakiaAgTests(slovakiaAgTests);
-    }
+//    @PostMapping("/new")
+//    public void addSlovakiaAgTests(@RequestBody SlovakiaAgTests slovakiaAgTests) {
+//        slovakiaAgTestsService.addSlovakiaAgTests(slovakiaAgTests);
+//    }
 
     @GetMapping
     public List<SlovakiaAgTests> getAllSlovakiaAgTests() {

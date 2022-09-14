@@ -161,7 +161,7 @@ public class DataFillerJPA {
             };
             List<District> districts = mapper.readValue(url, typeReference);
             for (int i = 0; i < districts.size(); i++) {
-                districtService.addDictrict(districts.get(i));
+                districtService.addDistrict(districts.get(i));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

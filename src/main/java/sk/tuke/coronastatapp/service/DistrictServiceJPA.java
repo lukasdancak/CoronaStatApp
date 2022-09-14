@@ -15,7 +15,7 @@ public class DistrictServiceJPA implements DistrictService {
     private EntityManager entityManager;
 
     @Override
-    public void addDictrict(District district) {
+    public void addDistrict(District district) {
         try {
             entityManager.createQuery("SELECT d FROM District d WHERE d.id = :id")
                     .setParameter("id", district.getId())

@@ -21,11 +21,15 @@
         <th>Posledny zapis</th>
         <th>Pocet zapisov v externej DB</th>
         <th>Posledny zapis</th>
+        <th>button</th>
+        <th>button</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>DistrictAgTests</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -37,9 +41,13 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>SlovakiaAgTests</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -51,6 +59,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>City</td>
@@ -58,9 +68,13 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>District</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -76,9 +90,13 @@
             <th:block th:text="${RegionGovSize}"></th:block>
         </td>
         <td>variable not exists</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>Vaccine</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -90,9 +108,13 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>DistrictHospitalBeds</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -104,9 +126,13 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>SlovakiaHospitalBeds</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -118,9 +144,13 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>DistrictHospitalPatients</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -132,9 +162,13 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>SlovakiaHospitalPatients</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -146,6 +180,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>Vaccinations</td>
@@ -153,9 +189,13 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>RegionVaccinations</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -171,6 +211,8 @@
             <th:block th:text="${SlovakiaVaccinationGovSize}"></th:block>
         </td>
         <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
     <tr>
         <td>VaccinationContact</td>
@@ -182,6 +224,16 @@
             <th:block th:text="${VaccinationContactGovSize}"></th:block>
         </td>
         <td>&nbsp;</td>
+        <td>
+            <form action="/clear?tablename=vaccinationcontact">
+                <input type="submit" value="Clear local table"/>
+            </form>
+        </td>
+        <td>
+            <form action="https://google.com">
+                <input type="submit" value="Clear and fill local table"/>
+            </form>
+        </td>
     </tr>
 
     </tbody>

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 import sk.tuke.coronastatapp.service.RegionService;
@@ -79,6 +80,27 @@ public class DbAdministrationController {
         slovakiaVaccinationGovSize = slovakiaVaccinationGovDb.getNumberOfRows();
         model.addAttribute("SlovakiaVaccinationGovSize", slovakiaVaccinationGovSize);
 
+    }
+
+
+    @RequestMapping("/dbadministration/clear")
+    public String clearTable(@RequestParam(required = false) String tableName,
+                             Model model) {
+        if (tableName == null) {
+            return "redirect:/dbadministration";
+        }
+
+        switch (tableName) {
+            case "vaccinationcontacts":
+                vaccinationContactService.deleteAllVaccinationContacts();
+                break;
+
+            case "slovakiavaccsinationservices":
+                slovakiaVaccinationService.deleteAllSlovakiaVaccinations();
+                break;
+        }
+        
+        return "redirect:/dbadministration";
     }
 
 

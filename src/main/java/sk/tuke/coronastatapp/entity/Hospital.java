@@ -23,6 +23,10 @@ public class Hospital {
     public Hospital() {
     }
 
+    public Hospital(int id) {
+        this.id = id;
+    }
+
     public Hospital(int id, City city, String title, String code) {
         this.id = id;
         this.city = city;

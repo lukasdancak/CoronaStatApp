@@ -7,8 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import sk.tuke.coronastatapp.service.VaccinationContactService;
 import sk.tuke.coronastatapp.service.VaccinationContactServiceJPA;
-import sk.tuke.coronastatapp.service.lukatestservices.VaccinationContactGovDb;
-import sk.tuke.coronastatapp.service.lukatestservices.VaccinationContactGovDbImplREST;
+import sk.tuke.coronastatapp.service.lukatestservices.*;
 
 
 import sk.tuke.coronastatapp.service.*;
@@ -21,6 +20,12 @@ public class CoronaStatAppServer {
         SpringApplication.run(CoronaStatAppServer.class);
     }
 
+
+    @Bean
+    public RegionGovDb regionGovDb() {
+        return new RegionGovDbImplJACKSON();
+    }
+
     @Bean
     public VaccinationContactService vaccinationContactService() {
         return new VaccinationContactServiceJPA();
@@ -28,7 +33,7 @@ public class CoronaStatAppServer {
 
     @Bean
     public VaccinationContactGovDb vaccinationContactGovDb() {
-        return new VaccinationContactGovDbImplREST();
+        return new VaccinationContactGovDbImplJACKSON();
     }
 
     @Bean

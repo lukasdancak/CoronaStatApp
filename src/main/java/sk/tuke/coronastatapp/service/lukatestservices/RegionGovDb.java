@@ -1,13 +1,13 @@
 package sk.tuke.coronastatapp.service.lukatestservices;
 
+import sk.tuke.coronastatapp.entity.Region;
 import sk.tuke.coronastatapp.entity.VaccinationContact;
 
 import java.util.List;
 
-public interface VaccinationContactGovDb {
+public interface RegionGovDb {
 
-
-    List<VaccinationContact> getAllVaccinationContacts();
+    List<Region> getAllRegions();
 
     int getNumberOfRows();
 }

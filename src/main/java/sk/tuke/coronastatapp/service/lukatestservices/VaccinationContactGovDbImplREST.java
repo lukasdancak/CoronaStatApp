@@ -17,7 +17,7 @@ public class VaccinationContactGovDbImplREST implements VaccinationContactGovDb 
 
 
     @Override
-    public List<VaccinationContact> getAllVaccinationContacts(String apiLink) {
+    public List<VaccinationContact> getAllVaccinationContacts() {
         List<VaccinationContact> finalList = new ArrayList<VaccinationContact>();
         List<VaccinationContact> tempList = new ArrayList<VaccinationContact>();
         String offfsetLink = "";
@@ -40,7 +40,7 @@ public class VaccinationContactGovDbImplREST implements VaccinationContactGovDb 
     //        return Arrays.asList(restTemplate.getForEntity(url + "/score/" + game, Score[].class).getBody());
 
     @Override
-    public int getNumberOfRows(String apiLink) {
-        return getAllVaccinationContacts(apiLink).size();
+    public int getNumberOfRows() {
+        return getAllVaccinationContacts().size();
     }
 }

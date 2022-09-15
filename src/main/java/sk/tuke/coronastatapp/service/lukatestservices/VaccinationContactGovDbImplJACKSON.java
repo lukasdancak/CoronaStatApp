@@ -53,7 +53,7 @@ public class VaccinationContactGovDbImplJACKSON implements VaccinationContactGov
         var temp = getAllVaccinationContacts();
 
         if (temp != null) {
-            return getAllVaccinationContacts().size();
+            return temp.size();
         } else {
             return -1;
         }

@@ -22,6 +22,16 @@ public class CoronaStatAppServer {
 
 
     @Bean
+    SlovakiaVaccinationGovDb slovakiaVaccinationGovDb() {
+        return new SlovakiaVaccinationGovDbImplJACKSON();
+    }
+
+    @Bean
+    SlovakiaVaccinationService slovakiaVaccinationService() {
+        return new SlovakiaVaccinationServiceJPA();
+    }
+
+    @Bean
     public RegionGovDb regionGovDb() {
         return new RegionGovDbImplJACKSON();
     }

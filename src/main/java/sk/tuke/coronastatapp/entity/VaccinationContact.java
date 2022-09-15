@@ -1,5 +1,7 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -23,11 +25,12 @@ public class VaccinationContact implements Serializable {
 //    @Id
 //    @GeneratedValue
 //    private int id;
-    //zatial to ide prec, pomohlo pridat triede implementaciu Seriazable
+
 
     @OneToOne
     @JoinColumn(name = "Hospital.id", nullable = false)
     @Id
+    @JsonProperty("hospital_id")
     private Hospital hospital;
     //integer title: Interné id poskytovateľa zdravotnej starostlivosti
 
@@ -42,6 +45,7 @@ public class VaccinationContact implements Serializable {
     @Column(
             columnDefinition = "text[]"
     )
+    @JsonProperty("substitutes_phones")
     private List<String> substitutesPhones;
     //string title: Telefonický kontakt pre registráciu náhradníkov na očkovanie
 
@@ -50,22 +54,26 @@ public class VaccinationContact implements Serializable {
     @Column(
             columnDefinition = "text[]"
     )
+    @JsonProperty("substitutes_emails")
     private List<String> substitutesEmails;
     //string title: Emailový kontakt pre registráciu náhradníkov na očkovanie
 
-
+    @JsonProperty("substitutes_link")
     private String substitutesLink;
     //string title: Webstránka s informáciami pre registráciu náhradníkov na očkovanie
     //moze byt null
 
-
+    @JsonProperty("substitutes_note")
     private String substitutesNote;
     //string title: Dôležitá poznámka pre registráciu náhradníkov na očkovanie
     //moze byt null
 
+    @JsonProperty("is_accepting_new_registrations")
     @Column(nullable = false)
     private boolean isAcceptingNewRegistrations;
 
+    @JsonProperty("updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false)
     private Date updatedAt;
     //string($date-time) title: Čas poslednej aktualizácie záznamu (čas poslednej zmeny hodnoty niektorého
@@ -74,10 +82,10 @@ public class VaccinationContact implements Serializable {
     public VaccinationContact() {
     }
 
-    public VaccinationContact(Hospital hospitalId, List<String> substitutesPhones, List<String> substitutesEmails,
+    public VaccinationContact(Hospital hospital, List<String> substitutesPhones, List<String> substitutesEmails,
                               String substitutesLink, String substitutesNote, boolean isAcceptingNewRegistrations,
                               Date updatedAt) {
-        this.hospital = hospitalId;
+        this.hospital = hospital;
         this.substitutesPhones = substitutesPhones;
         this.substitutesEmails = substitutesEmails;
         this.substitutesLink = substitutesLink;
@@ -146,7 +154,7 @@ public class VaccinationContact implements Serializable {
     @Override
     public String toString() {
         return "VaccinationContact{" +
-                "hospitalId=" + hospital +
+                ", hospitalId=" + hospital +
                 ", substitutesPhones='" + substitutesPhones + '\'' +
                 ", substitutesEmails='" + substitutesEmails + '\'' +
                 ", substitutesLink='" + substitutesLink + '\'' +

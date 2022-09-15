@@ -3,6 +3,7 @@ package sk.tuke.coronastatapp.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class Hospital {
@@ -20,6 +21,10 @@ public class Hospital {
     private String code;
 
     public Hospital() {
+    }
+
+    public Hospital(int id) {
+        this.id = id;
     }
 
     public Hospital(int id, City city, String title, String code) {

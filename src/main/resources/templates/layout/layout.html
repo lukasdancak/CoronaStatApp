@@ -9,6 +9,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
 
+    <link rel="stylesheet" href="/css/dbadmin.css" media="screen"/>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"/>
     <!-- Bootstrap icons-->
@@ -16,9 +17,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <!--    <link th:href="@{/css/styles.css}" rel="stylesheet"/>    -->
     <link rel="stylesheet" href="/css/styles.css" media="screen"/>
-    <link rel="stylesheet"
-          href="/css/dbadmin.css"
-          media="screen"/>
+
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -53,7 +52,15 @@
     </div>
 </header>
 
-<main layout:fragment="content"></main>
+
+<!-- Page Content-->
+<section class="pt-4">
+    <div class="container px-lg-5">
+
+        <main layout:fragment="content"></main>
+
+    </div>
+</section>
 
 
 <!-- Footer-->

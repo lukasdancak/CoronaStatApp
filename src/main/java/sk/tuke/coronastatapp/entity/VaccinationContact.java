@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -15,16 +16,18 @@ import java.util.List;
         name = "list-array",
         typeClass = ListArrayType.class
 )
-public class VaccinationContact {
+public class VaccinationContact implements Serializable {
 
     //mnou pridana premenna id, nie je v korona.gov.sk tabulke - pridana, lebo inak ma hibernate problem. L.Dancak
     // GeneratedValue preto, lebo je to nami pridana premenna, musi byt vygenerovana
-    @Id
-    @GeneratedValue
-    private int id;
+//    @Id
+//    @GeneratedValue
+//    private int id;
+
 
     @OneToOne
     @JoinColumn(name = "Hospital.id", nullable = false)
+    @Id
     private Hospital hospital;
     //integer title: Interné id poskytovateľa zdravotnej starostlivosti
 
@@ -143,7 +146,6 @@ public class VaccinationContact {
     @Override
     public String toString() {
         return "VaccinationContact{" +
-                "id=" + id +
                 ", hospitalId=" + hospital +
                 ", substitutesPhones='" + substitutesPhones + '\'' +
                 ", substitutesEmails='" + substitutesEmails + '\'' +

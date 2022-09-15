@@ -3,6 +3,7 @@ package sk.tuke.coronastatapp.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class Hospital {

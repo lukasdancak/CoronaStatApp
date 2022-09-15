@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class VaccinationContactGovDbImpl implements VaccinationContactGovDb {
+public class VaccinationContactGovDbImplREST implements VaccinationContactGovDb {
 
     private String url = "https://data.korona.gov.sk/api";
 
@@ -32,8 +32,8 @@ public class VaccinationContactGovDbImpl implements VaccinationContactGovDb {
 //
 //        } while (!true);
 
-//        return finalList;
-        return Arrays.asList(restTemplate.getForEntity(url + apiLink + offfsetLink, VaccinationContact[].class).getBody());
+        return finalList;
+
 
     }
 

@@ -1,21 +1,16 @@
 package sk.tuke.coronastatapp.server;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-import sk.tuke.coronastatapp.SpringClient;
 import sk.tuke.coronastatapp.service.VaccinationContactService;
 import sk.tuke.coronastatapp.service.VaccinationContactServiceJPA;
 import sk.tuke.coronastatapp.service.lukatestservices.VaccinationContactGovDb;
-import sk.tuke.coronastatapp.service.lukatestservices.VaccinationContactGovDbImpl;
+import sk.tuke.coronastatapp.service.lukatestservices.VaccinationContactGovDbImplREST;
 
 
-import javax.persistence.Entity;
 import sk.tuke.coronastatapp.service.*;
 
 @SpringBootApplication
@@ -33,7 +28,7 @@ public class CoronaStatAppServer {
 
     @Bean
     public VaccinationContactGovDb vaccinationContactGovDb() {
-        return new VaccinationContactGovDbImpl();
+        return new VaccinationContactGovDbImplREST();
     }
 
     @Bean

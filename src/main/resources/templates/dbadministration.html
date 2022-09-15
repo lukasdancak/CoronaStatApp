@@ -211,8 +211,12 @@
             <th:block th:text="${SlovakiaVaccinationGovSize}"></th:block>
         </td>
         <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>
+            <a href="/dbadministration/clear?tablename=slovakiavaccination">Clear local table</a>
+        </td>
+        <td>
+            <a href="/dbadministration/clearandfill?tablename=slovakiavaccination">Clear and fill local table</a>
+        </td>
     </tr>
     <tr>
         <td>VaccinationContact</td>
@@ -225,14 +229,10 @@
         </td>
         <td>&nbsp;</td>
         <td>
-            <form action="/clear?tablename=vaccinationcontact">
-                <input type="submit" value="Clear local table"/>
-            </form>
+            <a href="/dbadministration/clear?tablename=vaccinationcontact">Clear local table</a>
         </td>
         <td>
-            <form action="https://google.com">
-                <input type="submit" value="Clear and fill local table"/>
-            </form>
+            <a href="/dbadministration/clearandfill?tablename=vaccinationcontact">Clear and fill local table</a>
         </td>
     </tr>
 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout.html}"
+        lang="sk">
+<head>
+    <title>AG testy na Slovensku</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+<main layout:fragment="content">
+
+    <h3>AG testy na Slovensku</h3>
+
+    <canvas id="positiveAgTestsChart"></canvas>
+    </br>
+    <canvas id="negativeAgTestsChart"></canvas>
+    </br>
+    <canvas id="positivityRateChart"></canvas>
+
+    <script type="text/javascript">
+
+        const viewElements = {
+            positiveAgTestsChart: document.getElementById("positiveAgTestsChart"),
+            negativeAgTestsChart: document.getElementById("negativeAgTestsChart"),
+            positivityRateChart: document.getElementById("positivityRateChart"),
+        }
+
+        fetchAndRenderCharts("/api/ag-tests/in-slovakia", viewElements);
+
+        function fetchAndRenderCharts(getUrl, viewElements) {
+            fetch(getUrl)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return Promise.reject(new Error(`Data acquisition failed. Server answered with ${response.status}: ${response.statusText}.`));
+                    }
+                })
+                .then(agTestsData => {
+                    const published = [];
+                    const positives = [];
+                    const negatives = [];
+                    const positivityRate = [];
+
+                    for (let i = 0; i < agTestsData.length; i++) {
+                        published.push(agTestsData[i].published_on);
+                        positives.push(agTestsData[i].positives_count);
+                        negatives.push(agTestsData[i].negatives_count);
+                        positivityRate.push(agTestsData[i].positivity_rate);
+                    }
+
+                    published.reverse();
+                    positives.reverse()
+                    negatives.reverse();
+                    positivityRate.reverse();
+
+                    new Chart("positiveAgTestsChart", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "Pozitívne testy",
+                                    data: positives,
+                                    backgroundColor: "#c61036"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Počet pozitívnych výsledkov AG testov pre daný deň'
+                            }
+                        }
+                    });
+
+                    new Chart("negativeAgTestsChart", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "Negatívne testy",
+                                    data: negatives,
+                                    backgroundColor: "#53c610"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Počet negatívnych výsledkov AG testov pre daný deň'
+                            }
+                        }
+                    });
+
+                    new Chart("positivityRateChart", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "Pozitívne / všetky testy (%)",
+                                    data: positivityRate,
+                                    backgroundColor: "#105fc6"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Percentuálny podiel počtu pozitívnych výsledkov z počtu všetkých výsledkov'
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    errorMessage = "Could not retrieve or display data. Details: " + error;
+                    console.log(errorMessage);
+                })
+        }
+
+    </script>
+</main>
+</body>
+</html>

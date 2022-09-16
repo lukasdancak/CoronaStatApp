@@ -14,4 +14,9 @@ public class PageController {
 
         return "homepage";
     }
+
+    @RequestMapping("/charts/agtestsinslovakia")
+    public String showTestsChart() {
+        return "agtestsinslovakia";
+    }
 }

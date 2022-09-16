@@ -10,7 +10,7 @@ public class PageController {
 
     @RequestMapping("/")
     public String homepage(Model model) {
-        model.addAttribute("ShowHeader", true);
+        model.addAttribute("ShowBanner", true);
 
         return "homepage";
     }

@@ -56,23 +56,25 @@
 </nav>
 
 
-<th:block th:if="${#bools.isTrue(ShowHeader)}">
+<!-- Header-->
+<header class="py-5">
+    <div class="container px-lg-5">
 
-    <!-- Header-->
-    <header class="py-5">
-        <div class="container px-lg-5">
+        <th:block th:if="${#bools.isTrue(ShowBanner)}">
             <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
                 <div class="m-4 m-lg-5">
                     <h1 class="display-5 fw-bold">Máme nový plán, ako poraziť hnusobu!</h1>
-                    <p class="fs-4">Prinášame dáta a ilustrujeme ich význam spôsobom, ktorý vie pochopiť naozaj každý.
+                    <p class="fs-4">Prinášame dáta a ilustrujeme ich význam spôsobom, ktorý vie pochopiť naozaj
+                        každý.
                         Nepredkladáme jednoznačné závery, prinášame pohľady z rôznych uhlov.</p>
                     <a class="btn btn-primary btn-lg" href="#!">Chcem vedieť viac</a>
                 </div>
             </div>
-        </div>
-    </header>
+        </th:block>
 
-</th:block>
+
+    </div>
+</header>
 
 
 <!-- Page Content-->

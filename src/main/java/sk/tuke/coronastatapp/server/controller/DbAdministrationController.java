@@ -54,25 +54,22 @@ public class DbAdministrationController {
     }
 
     private void prepareModel(Model model) {
-        /*****************************************/
+        /****************** data about table: slovakia_vaccination ***********************/
         model.addAttribute("VaccinationContactLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("VaccinationContact"));
 
-        int vaccinationContactGovSize = -1; // ak ostane -1, znamena to problem s databazou
-        vaccinationContactGovSize = vaccinationContactGovDb.getNumberOfRows();
-        model.addAttribute("VaccinationContactGovSize", vaccinationContactGovSize);
 
-        /*********************************************/
-        int regionLocalSize = -1; // ak ostane -1, znamena to problem s databazou
-        try {
-            regionLocalSize = regionService.getAllRegions().size();
-        } catch (Exception e) {  //e.printStackTrace();
-        }
-        model.addAttribute("RegionLocalSize", regionLocalSize);
+        model.addAttribute("VaccinationContactGovSize", tableRowCountService
+                .getRowCountOfGovTable("VaccinationContact"));
 
-        int regionGovSize = -1; // ak ostane -1, znamena to problem s databazou
-        regionGovSize = regionGovDb.getNumberOfRows();
-        model.addAttribute("RegionGovSize", regionGovSize);
+
+        /****************  data about table: region *****************************/
+
+        model.addAttribute("RegionLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("Region"));
+
+        model.addAttribute("RegionGovSize", tableRowCountService
+                .getRowCountOfGovTable("Region"));
 
         /******************* data table: slovakia_vaccination **************************/
         int slovakiaVaccinationLocalSize = -1; // ak ostane -1, znamena to problem s databazou

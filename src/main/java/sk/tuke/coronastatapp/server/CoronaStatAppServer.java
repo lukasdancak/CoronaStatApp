@@ -22,6 +22,26 @@ public class CoronaStatAppServer {
 
 
     @Bean
+    VaccineGovDb vaccineGovDb() {
+        return new VaccineGovDbImplJACKSON();
+    }
+
+    @Bean
+    VaccineService vaccineService() {
+        return new VaccineServiceJPA();
+    }
+
+    @Bean
+    VaccinationGovDb vaccinationGovDb() {
+        return new VaccinationGovDbImplJACKSON();
+    }
+
+    @Bean
+    VaccinationService vaccinationService() {
+        return new VaccinationServiceJPA();
+    }
+
+    @Bean
     TableRowCountService tableRowCountService() {
         return new TableRowCountServiceImpl();
     }

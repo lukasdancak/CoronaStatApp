@@ -13,10 +13,14 @@ public class Vaccine {
     @Column(nullable = false)
     private String title;
     @Column(nullable = false)
-    private String manufactured;
+    private String manufacturer;
 
 
     public Vaccine() {
+    }
+
+    public Vaccine(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -35,18 +39,18 @@ public class Vaccine {
         this.title = title;
     }
 
-    public String getManufactured() {
-        return manufactured;
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public void setManufactured(String manufactured) {
-        this.manufactured = manufactured;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
-    public Vaccine(int id, String title, String manufactured) {
+    public Vaccine(int id, String title, String manufacturer) {
         this.id = id;
         this.title = title;
-        this.manufactured = manufactured;
+        this.manufacturer = manufacturer;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class Vaccine {
         return "Vaccine{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", manufactured='" + manufactured + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
                 '}';
     }
 }

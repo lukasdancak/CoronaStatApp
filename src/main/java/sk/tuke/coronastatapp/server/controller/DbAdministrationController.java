@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
-import sk.tuke.coronastatapp.entity.RegionVaccination;
-import sk.tuke.coronastatapp.entity.SlovakiaVaccination;
-import sk.tuke.coronastatapp.entity.VaccinationContact;
-import sk.tuke.coronastatapp.service.RegionService;
-import sk.tuke.coronastatapp.service.RegionVaccinationService;
-import sk.tuke.coronastatapp.service.SlovakiaVaccinationService;
-import sk.tuke.coronastatapp.service.VaccinationContactService;
+import sk.tuke.coronastatapp.entity.*;
+import sk.tuke.coronastatapp.service.*;
 import sk.tuke.coronastatapp.service.lukatestservices.*;
 
 @Controller
@@ -39,6 +34,14 @@ public class DbAdministrationController {
     RegionVaccinationService regionVaccinationService;
     @Autowired
     RegionVaccinationGovDb regionVaccinationGovDb;
+    @Autowired
+    VaccinationService vaccinationService;
+    @Autowired
+    VaccinationGovDb vaccinationGovDb;
+    @Autowired
+    VaccineService vaccineService;
+    @Autowired
+    VaccineGovDb vaccineGovDb;
 
     @Autowired
     TableRowCountService tableRowCountService;
@@ -72,28 +75,58 @@ public class DbAdministrationController {
                 .getRowCountOfGovTable("Region"));
 
         /******************* data table: slovakia_vaccination **************************/
-        int slovakiaVaccinationLocalSize = -1; // ak ostane -1, znamena to problem s databazou
-        try {
-            slovakiaVaccinationLocalSize = slovakiaVaccinationService.getAllSlovakiaVaccinations().size();
-        } catch (Exception e) {  //e.printStackTrace();
-        }
-        model.addAttribute("SlovakiaVaccinationLocalSize", slovakiaVaccinationLocalSize);
 
-        int slovakiaVaccinationGovSize = -1; // ak ostane -1, znamena to problem s databazou
-        slovakiaVaccinationGovSize = slovakiaVaccinationGovDb.getNumberOfRows();
-        model.addAttribute("SlovakiaVaccinationGovSize", slovakiaVaccinationGovSize);
+        model.addAttribute("SlovakiaVaccinationLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("SlovakiaVaccination"));
+
+//        model.addAttribute("SlovakiaVaccinationGovSize", tableRowCountService
+//                .getRowCountOfGovTable("SlovakiaVaccination"));
 
         /******************* data table: region_vaccination **************************/
-        int regionVaccinationLocalSize = -1; // ak ostane -1, znamena to problem s databazou
-        try {
-            regionVaccinationLocalSize = regionVaccinationService.getAllRegionVaccinations().size();
-        } catch (Exception e) {  //e.printStackTrace();
-        }
-        model.addAttribute("RegionVaccinationLocalSize", regionVaccinationLocalSize);
 
-        int regionVaccinationGovSize = -1; // ak ostane -1, znamena to problem s databazou
-        regionVaccinationGovSize = regionVaccinationGovDb.getNumberOfRows();
-        model.addAttribute("RegionVaccinationGovSize", regionVaccinationGovSize);
+        model.addAttribute("RegionVaccinationLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("RegionVaccination"));
+
+//        model.addAttribute("RegionVaccinationGovSize", tableRowCountService
+//                .getRowCountOfGovTable("RegionVaccination"));
+
+        /******************* data table: vaccination **************************/
+
+        model.addAttribute("VaccinationLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("Vaccination"));
+
+//        model.addAttribute("VaccinationGovSize", tableRowCountService
+//                .getRowCountOfGovTable("Vaccination"));
+
+        /******************* data table: hospital_staff **************************/
+
+        model.addAttribute("HospitalStaffLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("HospitalStaff"));
+
+//        model.addAttribute("HospitalStaffGovSize", tableRowCountService
+//                .getRowCountOfGovTable("HospitalStaff"));
+
+        /******************* data table: slovakia_hospital_patients **************************/
+
+        model.addAttribute("SlovakiaHospitalPatientsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("SlovakiaHospitalPatients"));
+
+//        model.addAttribute("SlovakiaHospitalPatientsGovSize", tableRowCountService
+//                .getRowCountOfGovTable("SlovakiaHospitalPatients"));
+
+        /******************* data table: region_hospital_patients **************************/
+
+        model.addAttribute("RegionHospitalPatientsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("RegionHospitalPatients"));
+
+//        model.addAttribute("SlovakiaHospitalPatientsGovSize", tableRowCountService
+//                .getRowCountOfGovTable("SlovakiaHospitalPatients"));
+
+        /******************* data table: vaccine **************************/
+
+        model.addAttribute("VaccineLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("Vaccine"));
+
 
     }
 
@@ -122,6 +155,14 @@ public class DbAdministrationController {
 
             case "regionvaccination":
                 regionVaccinationService.deleteAllRegionVaccinations();
+                break;
+
+            case "vaccination":
+                vaccinationService.deleteAllVaccinations();
+                break;
+
+            case "vaccine":
+                vaccineService.deleteAllVaccine();
                 break;
         }
 
@@ -159,6 +200,22 @@ public class DbAdministrationController {
                 var list3 = regionVaccinationGovDb.getAllRegionVaccinations();
                 for (RegionVaccination rv : list3) {
                     regionVaccinationService.addRegionVaccination(rv);
+                }
+                break;
+
+            case "vaccination":
+                vaccinationService.deleteAllVaccinations();
+                var list4 = vaccinationGovDb.getAllVaccinations();
+                for (Vaccination rv : list4) {
+                    vaccinationService.addVaccination(rv);
+                }
+                break;
+
+            case "vaccine":
+                vaccineService.deleteAllVaccine();
+                var list5 = vaccineGovDb.getAllVaccines();
+                for (Vaccine rv : list5) {
+                    vaccineService.addVaccine(rv);
                 }
                 break;
         }

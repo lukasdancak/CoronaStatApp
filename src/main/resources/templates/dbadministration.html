@@ -19,7 +19,7 @@
         <thead>
         <tr>
             <th>Entita</th>
-            <th>Pocet zapisov na lok. DB</th>
+            <th>Pocet zapisov v tabulke na lokalnej DB</th>
             <th>Posledny zapis</th>
             <th>Pocet zapisov v externej DB</th>
             <th>Posledny zapis</th>
@@ -97,18 +97,24 @@
         </tr>
         <tr>
             <td>Vaccine</td>
+            <td>
+                <th:block th:text="${VaccineLocalSize}"></th:block>
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+                <a href="/dbadministration/clear?tablename=vaccine">Clear local table</a>
+            </td>
+            <td>
+                <a href="/dbadministration/clearandfill?tablename=vaccine">Clear and fill local table</a>
+            </td>
         </tr>
         <tr>
             <td>HospitalBeds</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -117,7 +123,7 @@
             <td>DistrictHospitalBeds</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -126,7 +132,7 @@
             <td>RegionHospitalBeds</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -135,7 +141,7 @@
             <td>SlovakiaHospitalBeds</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -144,7 +150,7 @@
             <td>HospitalPatients</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -153,46 +159,62 @@
             <td>DistrictHospitalPatients</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td>RegionHospitalPatients</td>
+            <td>
+                <th:block th:text="${RegionHospitalPatientsLocalSize}"></th:block>
+            </td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td>SlovakiaHospitalPatients</td>
+            <td>
+                <th:block th:text="${SlovakiaHospitalPatientsLocalSize}"></th:block>
+            </td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>not supported</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td>HospitalStaff</td>
+            <td>
+                <th:block th:text="${HospitalStaffLocalSize}"></th:block>
+            </td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+                not supported
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>Vaccinations</td>
+            <td>Vaccination</td>
+            <td>
+                <th:block th:text="${VaccinationLocalSize}"></th:block>
+            </td>
             <td>&nbsp;</td>
+            <td>
+                not supported
+            </td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+                <a href="/dbadministration/clear?tablename=vaccination">Clear local table</a>
+            </td>
+            <td>
+                <a href="/dbadministration/clearandfill?tablename=vaccination">Clear and fill local table</a>
+            </td>
         </tr>
         <tr>
             <td>RegionVaccinations</td>
@@ -201,7 +223,7 @@
             </td>
             <td>&nbsp;</td>
             <td>
-                <th:block th:text="${RegionVaccinationGovSize}"></th:block>
+                not supported
             </td>
             <td>&nbsp;</td>
             <td>
@@ -218,7 +240,7 @@
             </td>
             <td></td>
             <td>
-                <th:block th:text="${SlovakiaVaccinationGovSize}"></th:block>
+                not supported
             </td>
             <td>&nbsp;</td>
             <td>

@@ -50,6 +50,20 @@ public class TableRowCountServiceImpl implements TableRowCountService {
 
             case "Region":
                 return getRowCountOfGovTableNoOffset(urlHome + "/api/regions");
+
+            case "SlovakiaVaccination":
+                return getRowCountOfGovTableWithOffset(urlHome + "/api/vaccinations/in-slovakia");
+
+            case "RegionVaccination":
+                return getRowCountOfGovTableWithOffset(urlHome + "/api/vaccinations/by-region");
+
+            case "Vaccination":
+                return getRowCountOfGovTableWithOffset(urlHome + "/api/vaccinations");
+
+            case "HospitalStaff":
+                return getRowCountOfGovTableWithOffset(urlHome + "/api/hospital-staff");
+
+
             default:
                 return -10; // vrati ak je nespravny nazov Entity na vstupe
 

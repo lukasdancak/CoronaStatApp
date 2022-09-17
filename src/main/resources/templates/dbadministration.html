@@ -15,7 +15,7 @@
     <p>Tu sa zobrazuju informacie o externej a internej databaze</p>
 
     <table class="table table-bordered">
-        
+
         <thead>
         <tr>
             <th>Entita</th>
@@ -196,12 +196,20 @@
         </tr>
         <tr>
             <td>RegionVaccinations</td>
+            <td>
+                <th:block th:text="${RegionVaccinationLocalSize}"></th:block>
+            </td>
             <td>&nbsp;</td>
+            <td>
+                <th:block th:text="${RegionVaccinationGovSize}"></th:block>
+            </td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+                <a href="/dbadministration/clear?tablename=regionvaccination">Clear local table</a>
+            </td>
+            <td>
+                <a href="/dbadministration/clearandfill?tablename=regionvaccination">Clear and fill local table</a>
+            </td>
         </tr>
         <tr>
             <td>SlovakiaVaccinations</td>

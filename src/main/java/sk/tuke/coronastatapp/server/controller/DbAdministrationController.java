@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
+import sk.tuke.coronastatapp.entity.RegionVaccination;
 import sk.tuke.coronastatapp.entity.SlovakiaVaccination;
 import sk.tuke.coronastatapp.entity.VaccinationContact;
 import sk.tuke.coronastatapp.service.RegionService;
+import sk.tuke.coronastatapp.service.RegionVaccinationService;
 import sk.tuke.coronastatapp.service.SlovakiaVaccinationService;
 import sk.tuke.coronastatapp.service.VaccinationContactService;
-import sk.tuke.coronastatapp.service.lukatestservices.RegionGovDb;
-import sk.tuke.coronastatapp.service.lukatestservices.SlovakiaVaccinationGovDb;
-import sk.tuke.coronastatapp.service.lukatestservices.VaccinationContactGovDb;
+import sk.tuke.coronastatapp.service.lukatestservices.*;
 
 @Controller
 //@Scope(WebApplicationContext.SCOPE_SESSION)
 public class DbAdministrationController {
+
 
     @Autowired
     VaccinationContactService vaccinationContactService;
@@ -34,6 +35,14 @@ public class DbAdministrationController {
     @Autowired
     SlovakiaVaccinationGovDb slovakiaVaccinationGovDb;
 
+    @Autowired
+    RegionVaccinationService regionVaccinationService;
+    @Autowired
+    RegionVaccinationGovDb regionVaccinationGovDb;
+
+    @Autowired
+    TableRowCountService tableRowCountService;
+
 //    @Autowired
 //    RestTemplate restTemplate;
 
@@ -46,13 +55,8 @@ public class DbAdministrationController {
 
     private void prepareModel(Model model) {
         /*****************************************/
-        int vaccinationContactLocalSize = -1; // ak ostane -1, znamena to problem s databazou
-        try {
-            vaccinationContactLocalSize = vaccinationContactService.getAllVaccinationContacts().size();
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-        model.addAttribute("VaccinationContactLocalSize", vaccinationContactLocalSize);
+        model.addAttribute("VaccinationContactLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("VaccinationContact"));
 
         int vaccinationContactGovSize = -1; // ak ostane -1, znamena to problem s databazou
         vaccinationContactGovSize = vaccinationContactGovDb.getNumberOfRows();
@@ -70,7 +74,7 @@ public class DbAdministrationController {
         regionGovSize = regionGovDb.getNumberOfRows();
         model.addAttribute("RegionGovSize", regionGovSize);
 
-        /*********************************************/
+        /******************* data table: slovakia_vaccination **************************/
         int slovakiaVaccinationLocalSize = -1; // ak ostane -1, znamena to problem s databazou
         try {
             slovakiaVaccinationLocalSize = slovakiaVaccinationService.getAllSlovakiaVaccinations().size();
@@ -82,9 +86,21 @@ public class DbAdministrationController {
         slovakiaVaccinationGovSize = slovakiaVaccinationGovDb.getNumberOfRows();
         model.addAttribute("SlovakiaVaccinationGovSize", slovakiaVaccinationGovSize);
 
+        /******************* data table: region_vaccination **************************/
+        int regionVaccinationLocalSize = -1; // ak ostane -1, znamena to problem s databazou
+        try {
+            regionVaccinationLocalSize = regionVaccinationService.getAllRegionVaccinations().size();
+        } catch (Exception e) {  //e.printStackTrace();
+        }
+        model.addAttribute("RegionVaccinationLocalSize", regionVaccinationLocalSize);
+
+        int regionVaccinationGovSize = -1; // ak ostane -1, znamena to problem s databazou
+        regionVaccinationGovSize = regionVaccinationGovDb.getNumberOfRows();
+        model.addAttribute("RegionVaccinationGovSize", regionVaccinationGovSize);
+
     }
 
-
+    /**************** request for clear table ******************/
     @RequestMapping("/dbadministration/clear")
     public String clearTable(@RequestParam(required = false) String tablename,
                              Model model) {
@@ -106,11 +122,16 @@ public class DbAdministrationController {
             case "slovakiavaccination":
                 slovakiaVaccinationService.deleteAllSlovakiaVaccinations();
                 break;
+
+            case "regionvaccination":
+                regionVaccinationService.deleteAllRegionVaccinations();
+                break;
         }
 
         return "redirect:/dbadministration";
     }
 
+    /**************** request for clear and fill table ******************/
     @RequestMapping("/dbadministration/clearandfill")
     public String clearAndFillTable(@RequestParam(required = false) String tablename,
                                     Model model) {
@@ -133,6 +154,14 @@ public class DbAdministrationController {
                 var list2 = slovakiaVaccinationGovDb.getAllSlovakiaVaccinations();
                 for (SlovakiaVaccination sv : list2) {
                     slovakiaVaccinationService.addSlovakiaVaccination(sv);
+                }
+                break;
+
+            case "regionvaccination":
+                regionVaccinationService.deleteAllRegionVaccinations();
+                var list3 = regionVaccinationGovDb.getAllRegionVaccinations();
+                for (RegionVaccination rv : list3) {
+                    regionVaccinationService.addRegionVaccination(rv);
                 }
                 break;
         }

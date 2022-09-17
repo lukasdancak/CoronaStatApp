@@ -22,6 +22,21 @@ public class CoronaStatAppServer {
 
 
     @Bean
+    TableRowCountService tableRowCountService() {
+        return new TableRowCountServiceImpl();
+    }
+
+    @Bean
+    RegionVaccinationGovDb regionVaccinationGovDb() {
+        return new RegionVaccinationGovDbImplJACKSON();
+    }
+
+    @Bean
+    RegionVaccinationService regionVaccinationService() {
+        return new RegionVaccinationServiceJPA();
+    }
+
+    @Bean
     SlovakiaVaccinationGovDb slovakiaVaccinationGovDb() {
         return new SlovakiaVaccinationGovDbImplJACKSON();
     }

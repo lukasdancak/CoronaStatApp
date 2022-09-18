@@ -28,4 +28,6 @@ public class VaccinationContactServiceJPA implements VaccinationContactService {
         entityManager.createNativeQuery("DELETE from vaccination_contact").executeUpdate();
 
     }
+
+
 }

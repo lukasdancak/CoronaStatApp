@@ -22,6 +22,71 @@ public class CoronaStatAppServer {
 
 
     @Bean
+    RegionHospitalPatientsService regionHospitalPatientsService() {
+        return new RegionHospitalPatientsServiceJPA();
+    }
+
+    @Bean
+    RegionHospitalPatientsGovDb regionHospitalPatientsGovDb() {
+        return new RegionHospitalPatientsGovDbImplJACKSON();
+    }
+
+    @Bean
+    SlovakiaHospitalPatientsService slovakiaHospitalPatientsService() {
+        return new SlovakiaHospitalPatientsServiceJPA();
+    }
+
+    @Bean
+    SlovakiaHospitalPatientsGovDb slovakiaHospitalPatientsGovDb() {
+        return new SlovakiaHospitalPatientsGovDbImplJACKSON();
+    }
+
+    @Bean
+    HospitalStaffGovDb hospitalStaffGovDb() {
+        return new HospitalStaffGovDbImplJACKSON();
+    }
+
+    @Bean
+    HospitalStaffService hospitalStaffService() {
+        return new HospitalStaffServiceJPA();
+    }
+
+    @Bean
+    VaccineGovDb vaccineGovDb() {
+        return new VaccineGovDbImplJACKSON();
+    }
+
+    @Bean
+    VaccineService vaccineService() {
+        return new VaccineServiceJPA();
+    }
+
+    @Bean
+    VaccinationGovDb vaccinationGovDb() {
+        return new VaccinationGovDbImplJACKSON();
+    }
+
+    @Bean
+    VaccinationService vaccinationService() {
+        return new VaccinationServiceJPA();
+    }
+
+    @Bean
+    TableRowCountService tableRowCountService() {
+        return new TableRowCountServiceImpl();
+    }
+
+    @Bean
+    RegionVaccinationGovDb regionVaccinationGovDb() {
+        return new RegionVaccinationGovDbImplJACKSON();
+    }
+
+    @Bean
+    RegionVaccinationService regionVaccinationService() {
+        return new RegionVaccinationServiceJPA();
+    }
+
+    @Bean
     SlovakiaVaccinationGovDb slovakiaVaccinationGovDb() {
         return new SlovakiaVaccinationGovDbImplJACKSON();
     }

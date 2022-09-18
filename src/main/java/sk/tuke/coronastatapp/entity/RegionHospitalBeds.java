@@ -1,11 +1,9 @@
 package sk.tuke.coronastatapp.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class RegionHospitalBeds {
     @Id
     @Column(nullable = false)
@@ -22,7 +20,7 @@ public class RegionHospitalBeds {
     private Date publishedOn;
 
     @ManyToOne
-    @JoinColumn(name= "Region.id",nullable = false)
+    @JoinColumn(name = "Region.id", nullable = false)
     private Region region;
 
     @Column(nullable = false)
@@ -49,6 +47,9 @@ public class RegionHospitalBeds {
 
     @Column(nullable = false)
     private Date updatedAt;
+
+    public RegionHospitalBeds() {
+    }
 
     public RegionHospitalBeds(int id, Date oldestReportedAt, Date newestReportedAt, Date publishedOn, Region region, int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid, int occupiedOaimCovid, int occupiedO2Covid, int occupiedOtherCovid, Date updatedAt) {
         this.id = id;

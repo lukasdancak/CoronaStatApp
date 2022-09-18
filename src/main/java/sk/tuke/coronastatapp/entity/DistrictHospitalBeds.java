@@ -2,10 +2,11 @@ package sk.tuke.coronastatapp.entity;
 
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
-
+@Entity
 public class DistrictHospitalBeds {
     @Id
     @Column(nullable = false)

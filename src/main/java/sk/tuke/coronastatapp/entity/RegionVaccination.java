@@ -1,5 +1,8 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,6 +10,7 @@ public class RegionVaccination {
 
     @ManyToOne
     @JoinColumn(name = "Region.id")
+    @JsonProperty("region_id")
     private Region region;
     //integer title: Interné id regiónu z regiónov z /api/regions alebo null. Hodnota null znamená,
     // že dáta nie sú priradené žiadnemu kraju.
@@ -15,27 +19,35 @@ public class RegionVaccination {
     private String id;
     //string title: Interné id záznamu
 
+    @JsonProperty("dose1_count")
     @Column(nullable = false)
     private int dose1Count;
     //integer title: Počet podaných prvých dávok vakcín pre daný deň a kraj
 
+    @JsonProperty("dose2_count")
     @Column(nullable = false)
     private int dose2Count;
     //integer title: Počet podaných druhých dávok vakcín pre daný deň a kraj
 
+    @JsonProperty("dose1_sum")
     @Column(nullable = false)
     private int dose1Sum;
     // integer title: Súčet podaných prvých dávok vakcín od začiatku vakcinácie do daného dňa pre daný kraj
 
+    @JsonProperty("dose2_sum")
     @Column(nullable = false)
     private int dose2Sum;
     //integer title: Súčet podaných druhých dávok vakcín od  začiatku vakcinácie do daného dňa pre daný kraj
 
+    @JsonProperty("updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(nullable = false)
     private String updatedAt;
     //string($date-time) title: Čas poslednej aktualizácie záznamu(čas poslednej zmeny hodnoty niektorého
     // z atribútov záznamu) example:2020-01-13 12:34:56
 
+    @JsonProperty("published_on")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private String publishedOn;
     //string($date-time) title:Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík

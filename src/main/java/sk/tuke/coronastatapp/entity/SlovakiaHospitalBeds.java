@@ -1,9 +1,11 @@
 package sk.tuke.coronastatapp.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class SlovakiaHospitalBeds {
     @Id
     @Column(nullable = false)
@@ -44,7 +46,8 @@ public class SlovakiaHospitalBeds {
     @Column(nullable = false)
     private Date updatedAt;
 
-    SlovakiaHospitalBeds(){}
+    SlovakiaHospitalBeds() {
+    }
 
     public int getId() {
         return id;

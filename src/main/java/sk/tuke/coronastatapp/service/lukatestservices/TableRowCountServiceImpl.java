@@ -25,7 +25,7 @@ public class TableRowCountServiceImpl implements TableRowCountService {
     public int getRowCountOfLocalTable(String tableName) {
 
         try {
-            System.out.println("spustam query v getrowCountLocalTable");
+            System.out.println("spustam query v getrowCountLocalTable, table name: " + tableName);
 
             var query = entityManager.createQuery("SELECT COUNT(*) FROM " + tableName)
                     // var query = entityManager.createNativeQuery("SELECT COUNT(*) FROM " + tableName + ";")
@@ -33,7 +33,7 @@ public class TableRowCountServiceImpl implements TableRowCountService {
             System.out.println(query);
             int i = Integer.valueOf(query.toString());
 
-            System.out.println("koncim query v getrowCountLocalTable");
+            System.out.println("koncim query v getrowCountLocalTable, table name: " + tableName);
             return i;
         } catch (Exception e) {
             //e.printStackTrace();
@@ -62,6 +62,18 @@ public class TableRowCountServiceImpl implements TableRowCountService {
 
             case "HospitalStaff":
                 return getRowCountOfGovTableWithOffset(urlHome + "/api/hospital-staff");
+
+            case "Vaccine":
+                return getRowCountOfGovTableNoOffset(urlHome + "/api/vaccines");
+
+            case "District":
+                return getRowCountOfGovTableNoOffset(urlHome + "/api/districts");
+
+            case "City":
+                return getRowCountOfGovTableNoOffset(urlHome + "/api/cities");
+
+            case "Hospital":
+                return getRowCountOfGovTableNoOffset(urlHome + "/api/hospitals");
 
 
             default:

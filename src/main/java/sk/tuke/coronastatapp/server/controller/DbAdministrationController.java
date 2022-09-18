@@ -42,6 +42,18 @@ public class DbAdministrationController {
     VaccineService vaccineService;
     @Autowired
     VaccineGovDb vaccineGovDb;
+    @Autowired
+    HospitalStaffService hospitalStaffService;
+    @Autowired
+    HospitalStaffGovDb hospitalStaffGovDb;
+    @Autowired
+    RegionHospitalPatientsGovDb regionHospitalPatientsGovDb;
+    @Autowired
+    RegionHospitalPatientsService regionHospitalPatientsService;
+    @Autowired
+    SlovakiaHospitalPatientsService slovakiaHospitalPatientsService;
+    @Autowired
+    SlovakiaHospitalPatientsGovDb slovakiaHospitalPatientsGovDb;
 
     @Autowired
     TableRowCountService tableRowCountService;
@@ -57,7 +69,7 @@ public class DbAdministrationController {
     }
 
     private void prepareModel(Model model) {
-        /****************** data about table: slovakia_vaccination ***********************/
+        /****************** data about table: vaccination_contact ***********************/
         model.addAttribute("VaccinationContactLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("VaccinationContact"));
 
@@ -87,45 +99,103 @@ public class DbAdministrationController {
         model.addAttribute("RegionVaccinationLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("RegionVaccination"));
 
-//        model.addAttribute("RegionVaccinationGovSize", tableRowCountService
-//                .getRowCountOfGovTable("RegionVaccination"));
 
         /******************* data table: vaccination **************************/
 
         model.addAttribute("VaccinationLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("Vaccination"));
 
-//        model.addAttribute("VaccinationGovSize", tableRowCountService
-//                .getRowCountOfGovTable("Vaccination"));
 
         /******************* data table: hospital_staff **************************/
 
         model.addAttribute("HospitalStaffLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("HospitalStaff"));
 
-//        model.addAttribute("HospitalStaffGovSize", tableRowCountService
-//                .getRowCountOfGovTable("HospitalStaff"));
 
         /******************* data table: slovakia_hospital_patients **************************/
 
         model.addAttribute("SlovakiaHospitalPatientsLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("SlovakiaHospitalPatients"));
 
-//        model.addAttribute("SlovakiaHospitalPatientsGovSize", tableRowCountService
-//                .getRowCountOfGovTable("SlovakiaHospitalPatients"));
 
         /******************* data table: region_hospital_patients **************************/
 
         model.addAttribute("RegionHospitalPatientsLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("RegionHospitalPatients"));
 
-//        model.addAttribute("SlovakiaHospitalPatientsGovSize", tableRowCountService
-//                .getRowCountOfGovTable("SlovakiaHospitalPatients"));
+        /******************* data table: district_hospital_patients **************************/
+
+        model.addAttribute("DistrictHospitalPatientsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("DistrictHospitalPatients"));
+
+        /******************* data table: hospital_patients **************************/
+
+        model.addAttribute("HospitalPatientsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("HospitalPatients"));
+
+        /******************* data table: slovakia_hospital_beds **************************/
+
+        model.addAttribute("SlovakiaHospitalBedsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("SlovakiaHospitalBeds"));
+
+        /******************* data table: region_hospital_beds **************************/
+
+        model.addAttribute("RegionHospitalBedsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("RegionHospitalBeds"));
+
+        /******************* data table: district_hospital_beds **************************/
+
+        model.addAttribute("DistrictHospitalBedsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("DistrictHospitalBeds"));
+
+        /******************* data table: hospital_beds **************************/
+
+        model.addAttribute("HospitalBedsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("HospitalBeds"));
+
 
         /******************* data table: vaccine **************************/
 
         model.addAttribute("VaccineLocalSize", tableRowCountService
                 .getRowCountOfLocalTable("Vaccine"));
+        model.addAttribute("VaccineGovSize", tableRowCountService
+                .getRowCountOfGovTable("Vaccine"));
+
+        /******************* data table: district **************************/
+
+        model.addAttribute("DistrictLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("District"));
+        model.addAttribute("DistrictGovSize", tableRowCountService
+                .getRowCountOfGovTable("District"));
+
+        /******************* data table: city **************************/
+
+        model.addAttribute("CityLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("City"));
+        model.addAttribute("CityGovSize", tableRowCountService
+                .getRowCountOfGovTable("City"));
+
+        /******************* data table: hospital **************************/
+
+        model.addAttribute("HospitalLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("Hospital"));
+        model.addAttribute("HospitalGovSize", tableRowCountService
+                .getRowCountOfGovTable("Hospital"));
+
+        /******************* data table: slovakia_ag_tests **************************/
+
+        model.addAttribute("SlovakiaAgTestsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("SlovakiaAgTests"));
+
+        /******************* data table: region_ag_tests **************************/
+
+        model.addAttribute("RegionAgTestsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("RegionAgTests"));
+
+        /******************* data table: district_ag_tests **************************/
+
+        model.addAttribute("DistrictAgTestsLocalSize", tableRowCountService
+                .getRowCountOfLocalTable("DistrictAgTests"));
 
 
     }
@@ -163,6 +233,18 @@ public class DbAdministrationController {
 
             case "vaccine":
                 vaccineService.deleteAllVaccine();
+                break;
+
+            case "hospitalstaff":
+                hospitalStaffService.deleteAllHospitalStaff();
+                break;
+
+            case "regionhospitalpatients":
+                regionHospitalPatientsService.deleteAllRegionHospitalPatients();
+                break;
+
+            case "slovakiahospitalpatients":
+                slovakiaHospitalPatientsService.deleteAllSlovakiaHospitalPatients();
                 break;
         }
 
@@ -216,6 +298,30 @@ public class DbAdministrationController {
                 var list5 = vaccineGovDb.getAllVaccines();
                 for (Vaccine rv : list5) {
                     vaccineService.addVaccine(rv);
+                }
+                break;
+
+            case "hospitalstaff":
+                hospitalStaffService.deleteAllHospitalStaff();
+                var list6 = hospitalStaffGovDb.getAllHospitalStaffs();
+                for (HospitalStaff o : list6) {
+                    hospitalStaffService.addHospitalStaff(o);
+                }
+                break;
+
+            case "regionhospitalpatients":
+                regionHospitalPatientsService.deleteAllRegionHospitalPatients();
+                var list7 = regionHospitalPatientsGovDb.getAllRegionHospitalPatients();
+                for (RegionHospitalPatients o : list7) {
+                    regionHospitalPatientsService.addRegionHospitalPatients(o);
+                }
+                break;
+
+            case "slovakiahospitalpatients":
+                slovakiaHospitalPatientsService.deleteAllSlovakiaHospitalPatients();
+                var list8 = slovakiaHospitalPatientsGovDb.getAllSlovakiaHospitalPatients();
+                for (SlovakiaHospitalPatients o : list8) {
+                    slovakiaHospitalPatientsService.addSlovakiaHospitalPatients(o);
                 }
                 break;
         }

@@ -22,6 +22,36 @@ public class CoronaStatAppServer {
 
 
     @Bean
+    RegionHospitalPatientsService regionHospitalPatientsService() {
+        return new RegionHospitalPatientsServiceJPA();
+    }
+
+    @Bean
+    RegionHospitalPatientsGovDb regionHospitalPatientsGovDb() {
+        return new RegionHospitalPatientsGovDbImplJACKSON();
+    }
+
+    @Bean
+    SlovakiaHospitalPatientsService slovakiaHospitalPatientsService() {
+        return new SlovakiaHospitalPatientsServiceJPA();
+    }
+
+    @Bean
+    SlovakiaHospitalPatientsGovDb slovakiaHospitalPatientsGovDb() {
+        return new SlovakiaHospitalPatientsGovDbImplJACKSON();
+    }
+
+    @Bean
+    HospitalStaffGovDb hospitalStaffGovDb() {
+        return new HospitalStaffGovDbImplJACKSON();
+    }
+
+    @Bean
+    HospitalStaffService hospitalStaffService() {
+        return new HospitalStaffServiceJPA();
+    }
+
+    @Bean
     VaccineGovDb vaccineGovDb() {
         return new VaccineGovDbImplJACKSON();
     }

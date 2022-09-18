@@ -1,5 +1,8 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,54 +10,78 @@ import java.util.Date;
 
 @Entity
 public class SlovakiaHospitalBeds {
-    @Id
-    @Column(nullable = false)
-    private int id;
-
 
     @Column(nullable = false)
+    @JsonProperty("oldest_reported_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date oldestReportedAt;
 
     @Column(nullable = false)
+    @JsonProperty("newest_reported_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date newestReportedAt;
 
     @Column(nullable = false)
+    @JsonProperty("published_on")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date publishedOn;
 
+
+    @Id
+    @JsonProperty("id")
     @Column(nullable = false)
+    private int id;
+
+    @Column(nullable = false)
+    @JsonProperty("capacity_all")
     private int capacityAll;
 
     @Column(nullable = false)
+    @JsonProperty("free_all")
     private int freeAll;
 
     @Column(nullable = false)
+    @JsonProperty("capacity_covid")
     private int capacityCovid;
 
     @Column(nullable = false)
+    @JsonProperty("occupied_jis_covid")
     private int occupiedJisCovid;
 
     @Column(nullable = false)
+    @JsonProperty("occupied_oaim_covid")
     private int occupiedOaimCovid;
 
-
     @Column(nullable = false)
+    @JsonProperty("occupied_o2_covid")
     private int occupiedO2Covid;
 
     @Column(nullable = false)
+    @JsonProperty("occupied_other_covid")
     private int occupiedOtherCovid;
 
     @Column(nullable = false)
+    @JsonProperty("updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
-    SlovakiaHospitalBeds() {
-    }
+    public SlovakiaHospitalBeds (){}
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public SlovakiaHospitalBeds(Date oldestReportedAt, Date newestReportedAt, Date publishedOn, int id,
+                                int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid,
+                                int occupiedOaimCovid, int occupiedO2Covid, int occupiedOtherCovid, Date updatedAt) {
+        this.oldestReportedAt = oldestReportedAt;
+        this.newestReportedAt = newestReportedAt;
+        this.publishedOn = publishedOn;
         this.id = id;
+        this.capacityAll = capacityAll;
+        this.freeAll = freeAll;
+        this.capacityCovid = capacityCovid;
+        this.occupiedJisCovid = occupiedJisCovid;
+        this.occupiedOaimCovid = occupiedOaimCovid;
+        this.occupiedO2Covid = occupiedO2Covid;
+        this.occupiedOtherCovid = occupiedOtherCovid;
+        this.updatedAt = updatedAt;
     }
 
     public Date getOldestReportedAt() {
@@ -79,6 +106,14 @@ public class SlovakiaHospitalBeds {
 
     public void setPublishedOn(Date publishedOn) {
         this.publishedOn = publishedOn;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getCapacityAll() {
@@ -145,28 +180,13 @@ public class SlovakiaHospitalBeds {
         this.updatedAt = updatedAt;
     }
 
-    public SlovakiaHospitalBeds(int id, Date oldestReportedAt, Date newestReportedAt, Date publishedOn, int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid, int occupiedOaimCovid, int occupiedO2Covid, int occupiedOtherCovid, Date updatedAt) {
-        this.id = id;
-        this.oldestReportedAt = oldestReportedAt;
-        this.newestReportedAt = newestReportedAt;
-        this.publishedOn = publishedOn;
-        this.capacityAll = capacityAll;
-        this.freeAll = freeAll;
-        this.capacityCovid = capacityCovid;
-        this.occupiedJisCovid = occupiedJisCovid;
-        this.occupiedOaimCovid = occupiedOaimCovid;
-        this.occupiedO2Covid = occupiedO2Covid;
-        this.occupiedOtherCovid = occupiedOtherCovid;
-        this.updatedAt = updatedAt;
-    }
-
     @Override
     public String toString() {
         return "SlovakiaHospitalBeds{" +
-                "id=" + id +
-                ", oldestReportedAt=" + oldestReportedAt +
+                "oldestReportedAt=" + oldestReportedAt +
                 ", newestReportedAt=" + newestReportedAt +
                 ", publishedOn=" + publishedOn +
+                ", id=" + id +
                 ", capacityAll=" + capacityAll +
                 ", freeAll=" + freeAll +
                 ", capacityCovid=" + capacityCovid +

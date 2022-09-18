@@ -1,5 +1,8 @@
 package sk.tuke.coronastatapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,55 +11,59 @@ public class HospitalPatients {
 
     @ManyToOne
     @JoinColumn(name = "Hospital.id", nullable = false)
+    @JsonProperty("hospital_id")
     private Hospital hospital;
     //integer title: Interné id nemocnice z /api/hospitals
 
     @Id
+    @JsonProperty("id")
     @Column(nullable = false)
     private int id;
     // integer title: Interné id záznamu
 
     @Column(nullable = false)
-    private Date reportedAt;
-    // string($date-time) title: Čas, kedy záznam reportovala nemocnica
-    // example: 2020-01-13 12:34:56
+    @JsonProperty("oldest_reported_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date oldestReportedAt;
 
     @Column(nullable = false)
+    @JsonProperty("ventilated_covid")
     private int ventilatedCovid;
     // integer title: Počet pacientov, ktorí majú COVID a sú na pľúcnej ventilácii
 
     @Column(nullable = false)
+    @JsonProperty("non_covid")
     private int nonCovid;
     // integer title: Počet pacientov, ktorí nemajú potvrdený COVID a nemajú ani podozrenie na COVID
 
     @Column(nullable = false)
+    @JsonProperty("confirmed_covid")
     private int confirmedCovid;
     // integer title: Počet pacientov, ktorí majú potvrdený COVID
 
     @Column(nullable = false)
+    @JsonProperty("suspected_covid")
     private int suspectedCovid;
     // integer title: Počet pacientov, ktorí majú podozrenie na COVID
 
     @Column(nullable = false)
+    @JsonProperty("updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
-    // string($date-time) title: Čas poslednej aktualizácie záznamu (čas poslednej zmeny hodnoty niektorého
-    // z atribútov záznamu)
-    //example: 2020-01-13 12:34:56
 
     @Column(nullable = false)
+    @JsonProperty("published_on")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date publishedOn;
-    // string($date-time) title: Deň, pre ktorý sú dáta záznamu publikované pre potreby štatistík
-    // example: 2020-01-13
 
 
-    public HospitalPatients() {
-    }
+    public HospitalPatients() {}
 
-    public HospitalPatients(Hospital hospitalId, int id, Date reportedAt, int ventilatedCovid, int nonCovid,
+    public HospitalPatients(Hospital hospital, int id, Date oldestReportedAt, int ventilatedCovid, int nonCovid,
                             int confirmedCovid, int suspectedCovid, Date updatedAt, Date publishedOn) {
-        this.hospital = hospitalId;
+        this.hospital = hospital;
         this.id = id;
-        this.reportedAt = reportedAt;
+        this.oldestReportedAt = oldestReportedAt;
         this.ventilatedCovid = ventilatedCovid;
         this.nonCovid = nonCovid;
         this.confirmedCovid = confirmedCovid;
@@ -73,12 +80,20 @@ public class HospitalPatients {
         this.hospital = hospital;
     }
 
-    public Date getReportedAt() {
-        return reportedAt;
+    public int getId() {
+        return id;
     }
 
-    public void setReportedAt(Date reportedAt) {
-        this.reportedAt = reportedAt;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getOldestReportedAt() {
+        return oldestReportedAt;
+    }
+
+    public void setOldestReportedAt(Date oldestReportedAt) {
+        this.oldestReportedAt = oldestReportedAt;
     }
 
     public int getVentilatedCovid() {
@@ -129,20 +144,12 @@ public class HospitalPatients {
         this.publishedOn = publishedOn;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public String toString() {
         return "HospitalPatients{" +
                 "hospital=" + hospital +
                 ", id=" + id +
-                ", reportedAt=" + reportedAt +
+                ", oldestReportedAt=" + oldestReportedAt +
                 ", ventilatedCovid=" + ventilatedCovid +
                 ", nonCovid=" + nonCovid +
                 ", confirmedCovid=" + confirmedCovid +
@@ -151,5 +158,4 @@ public class HospitalPatients {
                 ", publishedOn=" + publishedOn +
                 '}';
     }
-    
 }

@@ -1,8 +1,6 @@
-
 package sk.tuke.coronastatapp.service;
 
-import sk.tuke.coronastatapp.entity.DistrictHospitalBeds;
-import sk.tuke.coronastatapp.entity.RegionHospitalBeds;
+import sk.tuke.coronastatapp.entity.DistrictHospitalPatients;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,23 +8,29 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public class DistrictHospitalPatientsServiceJPA implements DistrictHospitalBedsService {
+public class DistrictHospitalPatientsServiceJPA implements DistrictHospitalPatientsService {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+
     @Override
-    public void addDistrictHospitalBeds(DistrictHospitalBeds DistrictHospitalBeds) {
-        entityManager.persist(DistrictHospitalBeds);
+    public void addDistrictHospitalPatients(DistrictHospitalPatients DistrictHospitalPatients) {
+
     }
 
     @Override
-    public List<DistrictHospitalBeds> getAllDistrictHospitalBeds() {
-        return entityManager.createQuery("select rhb from DistrictHospitalBeds rhb").getResultList();
-    }
-    @Override
-    public void deleteAllDistrictHospitalBeds () {{
-        entityManager.createNativeQuery("DELETE FROM DistrictHospitalBeds").executeUpdate();}
+    public void addRegionHospitalPatients(DistrictHospitalPatients districtHospitalPatients) {
+
     }
 
+    @Override
+    public List<DistrictHospitalPatients> getAllDistrictHospitalPatients() {
+        return null;
+    }
+
+    @Override
+    public void deleteAllDistrictHospitalPatients() {
+
+    }
 }

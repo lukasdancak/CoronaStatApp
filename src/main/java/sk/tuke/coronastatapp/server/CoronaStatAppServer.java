@@ -4,14 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import sk.tuke.coronastatapp.service.VaccinationContactService;
 import sk.tuke.coronastatapp.service.VaccinationContactServiceJPA;
 import sk.tuke.coronastatapp.service.lukatestservices.*;
 
-
 import sk.tuke.coronastatapp.service.*;
 
+@EnableScheduling
 @SpringBootApplication
 @EntityScan(basePackages = "sk.tuke.coronastatapp.entity")
 public class CoronaStatAppServer {

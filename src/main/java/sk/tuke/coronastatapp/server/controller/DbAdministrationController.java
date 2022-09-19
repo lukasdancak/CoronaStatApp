@@ -92,7 +92,6 @@ public class DbAdministrationController {
     DistrictHospitalPatientsGovDb districtHospitalPatientsGovDb;
 
 
-
     @Autowired
     TableRowCountService tableRowCountService;
 
@@ -360,6 +359,14 @@ public class DbAdministrationController {
                 var list8 = slovakiaHospitalPatientsGovDb.getAllSlovakiaHospitalPatients();
                 for (SlovakiaHospitalPatients o : list8) {
                     slovakiaHospitalPatientsService.addSlovakiaHospitalPatients(o);
+                }
+                break;
+
+            case "slovakiahospitalsbeds":
+                slovakiaHospitalBedsService.deleteAllSlovakiaHospitalBeds();
+                var list9 = slovakiaHospitalBedsGovDb.getAllSlovakiaHospitalBeds();
+                for (SlovakiaHospitalBeds o : list9) {
+                    slovakiaHospitalBedsService.addSlovakiaHospitalBeds(o);
                 }
                 break;
         }

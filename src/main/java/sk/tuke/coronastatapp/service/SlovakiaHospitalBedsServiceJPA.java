@@ -23,9 +23,12 @@ public class SlovakiaHospitalBedsServiceJPA implements SlovakiaHospitalBedsServi
     public List<SlovakiaHospitalBeds> getAllSlovakiaHospitalBeds() {
         return entityManager.createQuery("select hb from SlovakiaHospitalBeds hb").getResultList();
     }
+
     @Override
-    public void deleteAllSlovakiaHospitalBeds () {{
-        entityManager.createNativeQuery("DELETE FROM SlovakiaHospitalBeds").executeUpdate();}
+    public void deleteAllSlovakiaHospitalBeds() {
+        {
+            entityManager.createNativeQuery("DELETE FROM slovakia_hospital_beds").executeUpdate();
+        }
     }
 
 }

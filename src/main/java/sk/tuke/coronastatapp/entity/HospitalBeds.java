@@ -17,7 +17,7 @@ public class HospitalBeds {
     @Id
     @Column(nullable = false)
     @JsonProperty("id")
-    private int id;
+    private String id;
     //integer title: Interné id záznamu
 
     @Column(nullable = false)
@@ -79,7 +79,7 @@ public class HospitalBeds {
     public HospitalBeds() {
     }
 
-    public HospitalBeds(Hospital hospitalId, int id, Date reportedAt, Date updatedAt, Date publishedOn,
+    public HospitalBeds(Hospital hospitalId, String id, Date reportedAt, Date updatedAt, Date publishedOn,
                         int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid, int occupiedOaimCovid,
                         int occupied_o2_covid, int occupied_other_covid) {
         this.hospital = hospitalId;
@@ -100,7 +100,7 @@ public class HospitalBeds {
         return hospital;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

@@ -30,7 +30,7 @@ public class SlovakiaHospitalBeds {
     @Id
     @JsonProperty("id")
     @Column(nullable = false)
-    private int id;
+    private String id;
 
     @Column(nullable = false)
     @JsonProperty("capacity_all")
@@ -65,9 +65,10 @@ public class SlovakiaHospitalBeds {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
 
-    public SlovakiaHospitalBeds (){}
+    public SlovakiaHospitalBeds() {
+    }
 
-    public SlovakiaHospitalBeds(Date oldestReportedAt, Date newestReportedAt, Date publishedOn, int id,
+    public SlovakiaHospitalBeds(Date oldestReportedAt, Date newestReportedAt, Date publishedOn, String id,
                                 int capacityAll, int freeAll, int capacityCovid, int occupiedJisCovid,
                                 int occupiedOaimCovid, int occupiedO2Covid, int occupiedOtherCovid, Date updatedAt) {
         this.oldestReportedAt = oldestReportedAt;
@@ -108,11 +109,11 @@ public class SlovakiaHospitalBeds {
         this.publishedOn = publishedOn;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

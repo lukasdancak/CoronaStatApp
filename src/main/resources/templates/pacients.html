@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout.html}"
+        lang="sk">
+<head>
+    <title>Pacienti na Slovensku</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+<main layout:fragment="content">
+
+    <h3>Pacienti na Slovensku</h3>
+
+    <canvas id="potvrdeniPacienti"></canvas>
+    </br>
+    <canvas id="ventilovaniPacienti"></canvas>
+    </br>
+
+
+    <script type="text/javascript">
+
+        const viewElements = {
+            potvrdeniPacienti: document.getElementById("potvrdeniPacienti"),
+            ventilovaniPacienti: document.getElementById("ventilovaniPacienti"),
+
+        }
+
+        fetchAndRenderCharts("/api/hospital-patients/in-slovakia", viewElements);
+
+        function fetchAndRenderCharts(getUrl, viewElements) {
+            fetch(getUrl)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return Promise.reject(new Error(`Data acquisition failed. Server answered with ${response.status}: ${response.statusText}.`));
+                    }
+                })
+                .then(ockovanieData => {
+                    const published = [];
+                    const confirmed = [];
+                    const ventilated = [];
+
+
+                    for (let i = 0; i < ockovanieData.length; i++) {
+                        published.push(ockovanieData[i].published_on);
+                        confirmed.push(ockovanieData[i].confirmed_covid);
+                        ventilated.push(ockovanieData[i].ventilated_covid);
+
+                    }
+
+                    published.reverse();
+                    confirmed.reverse()
+                    ventilated.reverse();
+
+
+                    new Chart("potvrdeniPacienti", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "pacienti s Covidom",
+                                    data: confirmed,
+                                    backgroundColor: "#fa0505"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Počet potvrdených pacientov s Covidom pre daný deň'
+                            }
+                        }
+                    });
+
+                    new Chart("ventilovaniPacienti", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "ventilovaný pacienti",
+                                    data: ventilated,
+                                    backgroundColor: "#32343b"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Počet ventilovaných pacientov v daný deň'
+                            }
+                        }
+                    });
+
+
+                })
+                .catch(error => {
+                    errorMessage = "Could not retrieve or display data. Details: " + error;
+                    console.log(errorMessage);
+                })
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</main>
+</body>
+</html>

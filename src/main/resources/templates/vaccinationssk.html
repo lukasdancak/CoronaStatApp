@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout.html}"
+        lang="sk">
+<head>
+    <title>Očkovanie na Slovensku</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+<body>
+<main layout:fragment="content">
+
+    <h3>Očkovanie na Slovensku</h3>
+
+    <canvas id="ockovaniePrva"></canvas>
+    </br>
+    <canvas id="ockovanieDruha"></canvas>
+    </br>
+    <canvas id="ockovanieDruhaSum"></canvas>
+
+    <script type="text/javascript">
+
+        const viewElements = {
+            ockovaniePrva: document.getElementById("ockovaniePrva"),
+            ockovanieDruha: document.getElementById("ockovanieDruha"),
+            ockovanieDruhaSum: document.getElementById("ockovanieDruhaSum"),
+        }
+
+        fetchAndRenderCharts("/api/vaccinations/in-slovakia", viewElements);
+
+        function fetchAndRenderCharts(getUrl, viewElements) {
+            fetch(getUrl)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return Promise.reject(new Error(`Data acquisition failed. Server answered with ${response.status}: ${response.statusText}.`));
+                    }
+                })
+                .then(ockovanieData => {
+                    const published = [];
+                    const dose1 = [];
+                    const dose2 = [];
+                    const dose2sum = [];
+
+                    for (let i = 0; i < ockovanieData.length; i++) {
+                        published.push(ockovanieData[i].published_on);
+                        dose1.push(ockovanieData[i].dose1_count);
+                        dose2.push(ockovanieData[i].dose2_count);
+                        dose2sum.push(ockovanieData[i].dose2_sum);
+                    }
+
+                    published.reverse();
+                    dose1.reverse()
+                    dose2.reverse();
+                    dose2sum.reverse();
+
+                    new Chart("ockovaniePrva", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "1. dávka",
+                                    data: dose1,
+                                    backgroundColor: "#ea0a8e"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Počet prvých dávok podaných v daný deň'
+                            }
+                        }
+                    });
+
+                    new Chart("ockovanieDruha", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "2. dávka",
+                                    data: dose2,
+                                    backgroundColor: "#faf205"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Počet druhých dávok podaných v daný deň'
+                            }
+                        }
+                    });
+
+                    new Chart("ockovanieDruhaSum", {
+                        type: 'bar',
+                        data: {
+                            labels: published,
+                            datasets: [
+                                {
+                                    label: "SUM 2-ych dávok",
+                                    data: dose2sum,
+                                    backgroundColor: "#05fafa"
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: {display: true},
+                            title: {
+                                display: true,
+                                text: 'Suma osôb s dvoma dávkami'
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    errorMessage = "Could not retrieve or display data. Details: " + error;
+                    console.log(errorMessage);
+                })
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+</main>
+</body>
+</html>

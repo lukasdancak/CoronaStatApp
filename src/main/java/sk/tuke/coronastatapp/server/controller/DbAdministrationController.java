@@ -56,6 +56,44 @@ public class DbAdministrationController {
     SlovakiaHospitalPatientsGovDb slovakiaHospitalPatientsGovDb;
 
     @Autowired
+    HospitalBedsService hospitalBedsService;
+
+    @Autowired
+    HospitalBedsGovDb hospitalBedsGovDb;
+
+    @Autowired
+    DistrictHospitalBedsService districtHospitalBedsService;
+
+    @Autowired
+    DistrictHospitalBedsGovDb districtHospitalBedsGovDb;
+
+    @Autowired
+    RegionHospitalBedsService regionHospitalBedsService;
+
+    @Autowired
+    RegionHospitalBedsGovDb regionHospitalBedsGovDb;
+
+    @Autowired
+    SlovakiaHospitalBedsService slovakiaHospitalBedsService;
+
+    @Autowired
+    SlovakiaHospitalBedsGovDb slovakiaHospitalBedsGovDb;
+
+    @Autowired
+    HospitalPatientsService hospitalPatientsService;
+
+    @Autowired
+    HospitalPatientsGovDb hospitalPatientsGovDb;
+
+    @Autowired
+    DistrictHospitalPatientsService districtHospitalPatientsService;
+
+    @Autowired
+    DistrictHospitalPatientsGovDb districtHospitalPatientsGovDb;
+
+
+
+    @Autowired
     TableRowCountService tableRowCountService;
 
 //    @Autowired
